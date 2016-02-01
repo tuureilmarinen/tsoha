@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+              la liste de contrôle par iltu 
+          </title>
+
+          <!-- Bootstrap (tyylitiedosto) -->
+      <link href="/tsoha/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Oma tyylitiedostomme -->
+      <link href="/tsoha/assets/css/site.css" rel="stylesheet">
+      </head>
+
+<body>
+    <header>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+<li role="presentation" class="dropdown">
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+		groups <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" role="menu">
+			<li><a href="/groups/6">Gruppen1</a></li>
+			<li><a href="/groups/7">Gruppen2</a></li>
+			<li><a href="/groups/9">kissa</a></li>
+			<li><a href="/groups/16">gg</a></li>
+			<li><a href="/groups/17"></a></li>
+			<li role="presentation" class="divider"></li>
+		<li><a href="/groups/new">new group</a></li>
+	</ul>
+</li>
+<li><a rel="nofollow" data-method="delete" href="/logout">logout user</a></li>
+<li><a href="/users/3/edit">change password</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    </header>
+    <main role="main">
+           <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <div id="flash_notice">Login successful</div>
+    </div>
+  <div class="panel panel-default">
+    <div class="panel-heading h2">
+        <span class="glyphicon glyphicon-remove"></span>
+      ruoki mirri
+      <span class="badge">
+      priority: 10
+      </span>
+    </div>
+    <div class="panel-body">
+    palauta mirri tulevaisuuteen. meow :3
+    </div>
+	<hr/>
+	<ul>
+	<li><b>Created:</b> 26.10.1985 0121</li>
+	<li><b>Edited:</b> 21.10.2015 1928</li>
+	<li><b>User:</b> vous</li>
+	</ul>
+      <ul class="list-inline" style="margin-left: 10px;">
+		<li>
+            groups
+          </li>
+          <li>
+            <a class="btn btn-xs btn-default" href="/groups/9">kissa</a>
+          </li>
+		</ul>
+		<ul class="list-inline" style="margin-left: 10px;">
+        <li>
+          <a class="btn btn-xs btn-primary" href="/tasks/10/edit">edit&nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
+        </li>
+        <li>
+            <a class="btn btn-xs btn-success" rel="nofollow" data-method="post" href="/tasks/10/toggle_completion">it&#39;s done&nbsp;<span class="glyphicon glyphicon-ok"></span></a>
+        </li>
+        <li>
+          <a data-confirm="Are you sure?" class="btn btn-xs btn-default" rel="nofollow" data-method="delete" href="/tasks/10">delete&nbsp;<span class="glyphicon glyphicon-trash"></span></a>
+        </li>
+      </ul>
+  </div>
+
+
+
+<a class="btn btn-primary" href="/tasks/new">New Task</a>
+
+    </main>
+
+          <!-- jQuery -->
+      <script src="/tsoha/vendor/jquery.min.js"></script>
+
+      <!-- Bootstrap (skriptitiedosto) -->
+      <script src="/tsoha/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+      <!-- Oma skriptitiedostomme -->
+      <script src="/tsoha/assets/js/site.js"></script>
+      </body>
+</html>
