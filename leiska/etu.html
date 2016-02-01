@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+              la liste de contrôle par iltu 
+          </title>
+
+          <!-- Bootstrap (tyylitiedosto) -->
+      <link href="/tsoha/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+      <!-- Oma tyylitiedostomme -->
+      <link href="/tsoha/assets/css/site.css" rel="stylesheet">
+      </head>
+
+<body>
+    <header>
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        
+<li role="presentation" class="dropdown">
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+		groups <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu" role="menu">
+			<li><a href="/groups/6">Gruppen1</a></li>
+			<li><a href="/groups/7">Gruppen2</a></li>
+			<li><a href="/groups/9">kissa</a></li>
+			<li><a href="/groups/16">gg</a></li>
+			<li><a href="/groups/17"></a></li>
+			<li role="presentation" class="divider"></li>
+		<li><a href="/groups/new">new group</a></li>
+	</ul>
+</li>
+<li><a rel="nofollow" data-method="delete" href="/logout">logout user</a></li>
+<li><a href="/users/3/edit">change password</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    </header>
+    <main role="main">
+       
+       <br/>
+    <form class="form-inline" action="/session" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="cbfCer9x6ngn5uMbUIwG31/LbLySnnbLZqk/7/eAV6bf0wg9M4MD77JW1ztLvBsbbv9pf+u4Eg+qNSRo18BQXw==" />
+      <span class="input-group input-group-sm">
+        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+        <!--<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"> -->
+        <input type="text" name="username" id="username" placeholder="username" class="form-control" />
+      </span>
+      <span class="input-group input-group-sm">
+        <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+        <input type="password" name="password" id="password" placeholder="password" class="form-control" />
+      </span>
+      <input type="submit" name="commit" value="Log in" class="btn btn-primary btn-sm" />
+</form>
+<br/>
+<a class="btn btn-xl btn-success" href="/signup">Signup!</a>
+
+    </main>
+
+          <!-- jQuery -->
+      <script src="/tsoha/vendor/jquery.min.js"></script>
+
+      <!-- Bootstrap (skriptitiedosto) -->
+      <script src="/tsoha/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+      <!-- Oma skriptitiedostomme -->
+      <script src="/tsoha/assets/js/site.js"></script>
+      </body>
+</html>
