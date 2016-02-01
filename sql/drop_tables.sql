@@ -1,1 +1,4 @@
--- Lisää DROP TABLE lauseet tähän tiedostoon
+DROP TABLE "users" IF EXISTS;
+DROP TABLE "tasks" IF EXISTS;
+DROP TABLE "groups" IF EXISTS;
+DROP TABLE "task_to_groups" IF EXISTS;
