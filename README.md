@@ -3,7 +3,7 @@
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://iltutsoha.herokuapp.com)
-* [Linkki dokumentaatiooni](https://www.github.com/tuureilmarinen/tsoha/doc/dokkari.pdf)
+* [Linkki dokumentaatiooni](https://www.github.com/tuureilmarinen/tsoha/doc/dokkari.docx)
 
 ## Työn aihe
 
