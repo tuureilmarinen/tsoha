@@ -39,4 +39,3 @@
   require 'config/routes.php';
 
   $routes->run();
-  ?>

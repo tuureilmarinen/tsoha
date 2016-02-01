@@ -28,7 +28,7 @@
   // Otetaan Composer käyttöön
   require 'vendor/autoload.php';
 
-  $routes = new \Slim\Slim();
+/*  $routes = new \Slim\Slim();
 //  $routes->add(new \Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware);
 
   $routes->get('/tietokantayhteys', function(){
@@ -38,4 +38,4 @@
   // Otetaan reitit käyttöön
   require 'config/routes.php';
 
-  $routes->run();
+  $routes->run();*/
