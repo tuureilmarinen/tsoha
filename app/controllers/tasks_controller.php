@@ -28,7 +28,7 @@ class TaskController extends BaseController{
 
   }
   public static function show($id){
-  	$task = Task::find(int($id));
+  	$task = Task::find(intval($id));
 	View::make('task/show.html', array('task' => $task));
   }
 }
