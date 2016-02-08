@@ -21,8 +21,8 @@ class Task extends BaseModel{
 			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
 			
 			$query->execute(array('task_id' => $row['id']));
-			while($grow = $query->fetch()){
-				$groups[]=new Group(array($grow));
+			while($g = $query->fetch()){
+				$groups[]=new Group($g);
 			}
       // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
 			$tasks[] = new Task(array(

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+{% if message %}
 <div class="alert alert-success">
 	{{message}}
 </div>
+{% endif %}
 <div class="panel panel-default">
 	<div class="panel-heading h2">
 		<span class="glyphicon glyphicon-remove"></span>
-		ruoki mirri
+		{{task.name}}
 		<span class="badge">
 			priority: {{task.priority}}
 		</span>
