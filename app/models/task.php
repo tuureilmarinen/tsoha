@@ -17,7 +17,7 @@ class Task extends BaseModel{
 		$tasks = array();
     // Käydään kyselyn tuottamat rivit läpi
 		foreach($rows as $row){
-			$groups=new array();
+			$groups=array();
 			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
 			
 			$query->execute(array('task_id' => $row['id']));
