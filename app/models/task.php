@@ -32,7 +32,7 @@ class Task extends BaseModel{
 				'completed' => $row['completed'],
 				'priority' => $row['priority'],
 				'created_at' => $row['created_at'],
-				'edited_at' => $row['edited_at'],
+				'updated_at' => $row['updated_at'],
 				'groups' => $groups
 				));
 		}
@@ -52,7 +52,7 @@ class Task extends BaseModel{
 				'completed' => $row['completed'],
 				'priority' => $row['priority'],
 				'created_at' => $row['created_at'],
-				'edited_at' => $row['edited_at']
+				'updated_at' => $row['updated_at']
 				));
 			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
 			$groups = array();
@@ -67,7 +67,7 @@ class Task extends BaseModel{
 	}
 	public function save(){
     // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
-		$query = DB::connection()->prepare('INSERT INTO Task (name, description, completed, priority, user_id, created_at, edited_at)
+		$query = DB::connection()->prepare('INSERT INTO Task (name, description, completed, priority, user_id, created_at, updated_at)
 			VALUES (:name, :description, :completed, :priority, :user_id, now(), now()) RETURNING id');
     // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
 		$query->execute(array('name' => $this->name,
