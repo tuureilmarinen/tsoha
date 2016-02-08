@@ -17,7 +17,7 @@ class Task extends BaseModel{
 
     // Käydään kyselyn tuottamat rivit läpi
 		foreach($rows as $row){
-			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=group.id WHERE task_to_groups.task_id = :task_id');
+			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
 			$groups = array();
 			$query->execute(array('task_id' => $row['id']));
 			while($grow = $query->fetch()){
@@ -54,7 +54,7 @@ class Task extends BaseModel{
 				'created_at' => $row['created_at'],
 				'edited_at' => $row['edited_at']
 				));
-			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=group.id WHERE task_to_groups.task_id = :task_id');
+			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
 			$groups = array();
 			$query->execute(array('task_id' => $row['id']));
 			while($grow = $query->fetch()){
