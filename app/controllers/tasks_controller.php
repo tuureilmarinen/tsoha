@@ -31,4 +31,7 @@ class TaskController extends BaseController{
   	$task = Task::find(intval($id));
 	View::make('task/show.html', array('task' => $task));
   }
+  public static function create(){
+  View::make('task/new.html');
+  }
 }
