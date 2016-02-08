@@ -25,10 +25,10 @@
 		</li>
 		{% endfor %}
 		<li>
-			<a class="btn btn-xs btn-default" href="{{base_path}}/tasks/{{task.id}}"><span class="glyphicon glyphicon-eye-open"></span></a>
+			<a class="btn btn-xs btn-default" href="{{base_path}}/task/{{task.id}}"><span class="glyphicon glyphicon-eye-open"></span></a>
 		</li>
 		<li>
-			<a class="btn btn-xs btn-primary" href="/tasks/{{task.id}}/edit"><span class="glyphicon glyphicon-pencil"></span></a>
+			<a class="btn btn-xs btn-primary" href="/task/{{task.id}}/edit"><span class="glyphicon glyphicon-pencil"></span></a>
 		</li>
 		<li>
 		{% if task.completed %}
