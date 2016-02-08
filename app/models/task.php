@@ -65,4 +65,19 @@ class Task extends BaseModel{
 
 		return null;
 	}
+	public function save(){
+    // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
+		$query = DB::connection()->prepare('INSERT INTO Task (name, description, completed, priority, user_id, created_at, edited_at)
+			VALUES (:name, :description, :completed, :priority, :user_id, now(), now()) RETURNING id');
+    // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
+		$query->execute(array('name' => $this->name,
+			'description' => $this->description,
+			'completed' => $this->completed,
+			'priority' => $this->priority,
+			'user_id' => $this->user_id));
+    // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
+		$row = $query->fetch();
+    // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
+		$this->id = $row['id'];
+	}
 }
