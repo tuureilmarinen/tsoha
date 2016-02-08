@@ -14,13 +14,12 @@ class Task extends BaseModel{
 		$query->execute();
     // Haetaan kyselyn tuottamat rivit
 		$rows = $query->fetchAll();
-		$games = array();
-
+		$tasks = array();
     // Käydään kyselyn tuottamat rivit läpi
 		foreach($rows as $row){
-			$groups=array();
+			$groups=new array();
 			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
-			$tasks = array();
+			
 			$query->execute(array('task_id' => $row['id']));
 			while($grow = $query->fetch()){
 				$groups[]=new Group(array($grow));

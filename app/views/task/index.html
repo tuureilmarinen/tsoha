@@ -19,9 +19,9 @@
 		{{task.description}}
 	</div>
 	<ul class="list-inline" style="margin-left: 10px;">
-		{% for group in task.groups %}
+		{% for g in task.groups %}
 		<li>
-			<a class="btn btn-xs btn-default" href="{{base_path}}/group/{{group.id}}">{{group.name}}</a>
+			<a class="btn btn-xs btn-default" href="{{base_path}}/group/{{g.id}}">{{g.name}}</a>
 		</li>
 		{% endfor %}
 		<li>
