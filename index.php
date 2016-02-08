@@ -1,5 +1,5 @@
 <?php
-
+header("locaton: http://iltu.users.cs.helsinki.fi/tsoha/".$_SERVER[REQUEST_URI]);
   // Laitetaan virheilmoitukset näkymään
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
