@@ -12,6 +12,7 @@ return array(
     'DatabaseConfig' => $baseDir . '/config/database.php',
     'HelloWorldController' => $baseDir . '/app/controllers/hello_world_controller.php',
     'Redirect' => $baseDir . '/lib/redirect.php',
+    'TaskController' => $baseDir . '/app/controllers/tasks_controller.php',
     'View' => $baseDir . '/lib/view.php',
     'Whoops\\Module' => $vendorDir . '/filp/whoops/src/deprecated/Zend/Module.php',
     'Whoops\\Provider\\Zend\\ExceptionStrategy' => $vendorDir . '/filp/whoops/src/deprecated/Zend/ExceptionStrategy.php',
