@@ -2,7 +2,7 @@
 require 'app/models/group.php';
 class Task extends BaseModel{
   // Attribuutit
-	public $id, $name, $description, $priority, $user_id, $created_at, $updated_at;
+	public $id, $name, $description, $completed, $priority, $user_id, $created_at, $updated_at;
   // Konstruktori
 	public function __construct($attributes){
 		parent::__construct($attributes);
