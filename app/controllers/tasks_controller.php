@@ -24,7 +24,7 @@ class TaskController extends BaseController{
 
     // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
     //Redirect::to('/task/' . $task->id, array('message' => 'Task has been added!'));
-    Redirect::to('/task/', array('message' => 'Task has been added!'));
+    Redirect::to('/task', array('message' => 'Task has been added!'));
 
   }
   public static function show($id){
