@@ -2,7 +2,7 @@
 require 'app/models/group.php';
 class Task extends BaseModel{
   // Attribuutit
-	public $id, $name, $description, $completed, $priority, $user_id, $created_at, $updated_at;
+	public $id, $name, $description, $completed, $priority, $user_id, $created_at, $updated_at, $groups;
   // Konstruktori
 	public function __construct($attributes){
 		parent::__construct($attributes);
@@ -19,13 +19,13 @@ class Task extends BaseModel{
     // Käydään kyselyn tuottamat rivit läpi
 		foreach($rows as $row){
 			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
-			$groups = array();
+			$tasks = array();
 			$query->execute(array('task_id' => $row['id']));
 			while($grow = $query->fetch()){
 				$groups[]=new Group(array($grow));
 			}
       // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
-			$games[] = new Task(array(
+			$tasks[] = new Task(array(
 				'id' => $row['id'],
 				'name' => $row['name'],
 				'user_id' => $row['user_id'],
@@ -38,13 +38,19 @@ class Task extends BaseModel{
 				));
 		}
 
-		return $games;
+		return $tasks;
 	}
 	public static function find($id){
 		$query = DB::connection()->prepare('SELECT * FROM tasks WHERE id = :id LIMIT 1');
 		$query->execute(array('id' => $id));
 		$row = $query->fetch();
 		if($row){
+			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
+			$groups = array();
+			$query->execute(array('task_id' => $row['id']));
+			while($grow = $query->fetch()){
+				$groups[]=new Group(array($grow));
+			}
 			$game = new Task(array(
 				'id' => $row['id'],
 				'name' => $row['name'],
@@ -53,7 +59,8 @@ class Task extends BaseModel{
 				'completed' => $row['completed'],
 				'priority' => $row['priority'],
 				'created_at' => $row['created_at'],
-				'updated_at' => $row['updated_at']
+				'updated_at' => $row['updated_at'],
+				'groups' => $groups
 				));
 			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
 			$groups = array();
