@@ -1,6 +1,6 @@
 <?php
 if($_SERVER['HTTP_HOST']=="iltutsoha.herokuapp.com"){
-  header("Location: http://iltu.users.cs.helsinki.fi/tsoha/".$_SERVER[REQUEST_URI]);
+  header("Location: http://iltu.users.cs.helsinki.fi/tsoha".$_SERVER[REQUEST_URI]);
   die("redirect");
 }
   // Laitetaan virheilmoitukset näkymään
