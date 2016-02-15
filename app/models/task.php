@@ -128,6 +128,16 @@ class Task extends BaseModel{
 			'completed' => $_POST['completed'],
 			'priority' => $_POST['priority']));
 	}
+	public function updateInstance(){
+		$query=DB::connection()->prepare('UPDATE tasks SET name = :name, description = :description, user_id = :user_id, completed = :completed, priority = :priority, updated_at=now() WHERE id=:id');
+		$query->execute(array(
+			'id' => $this->id,
+			'name' => $this->name,
+			'user_id' => $this->user_id,
+			'description' => $this->description,
+			'completed' => $this->completed,
+			'priority' => $this->priority));
+	}
 
 	public function validate(){
 		$errors=array();

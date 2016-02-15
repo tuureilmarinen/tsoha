@@ -71,7 +71,7 @@ class TaskController extends BaseController{
     $t=Task::find($id);
     if($u==$t->user_id){
       $t->completed=true;
-      $t->update();
+      $t->updateInstance();
     }
     Redirect::to('/task', array('message' => 'marked as done'));
   }
@@ -80,7 +80,7 @@ class TaskController extends BaseController{
     $t=Task::find($id);
     if($u==$t->user_id){
       $t->completed=false;
-      $t->update();
+      $t->updateInstance();
     }
     Redirect::to('/task', array('message' => 'marked as done'));
   }
