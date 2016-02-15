@@ -162,7 +162,7 @@ class Task extends BaseModel{
 	public function validate_user(){
 		$errors=array();
 		if(!is_numeric($this->user_id)){ //TODO: tarkista tietokannasta voiko userid olla muu kuin int
-			$errors[]="UserID is invalid"; 
+			$errors[]="UserID is invalid (".$this->user_id.")"; 
 		}
 		return $errors;
 	}
