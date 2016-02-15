@@ -1,5 +1,6 @@
 <?
 require 'app/models/group.php';
+require 'app/models/task.php';
 class User extends BaseModel{
   // Attribuutit
 	public $id, $name, $password_digest;
@@ -8,13 +9,25 @@ class User extends BaseModel{
 	public function __construct($attributes){
 		parent::__construct($attributes);
 	}
-	public static authenticate($user,$password){
+	public static function authenticate($user,$password){
 		$query=DB::connection()->prepare('SELECT users.* from users where username=:username and password_digest=:password_digest;');
 		$password_digest = password_hash($password);
 		$query->execute(array("username" => $user, "password_digest",));
 		if($row=$query->fetch()){
 			return new User($row);
 		} else {
+			return null;
+		}
+	}
+	public function find_tasks(){
+		return Task::find_by_user($this->id);
+	}
+	public static function find($id){
+		$query=DB::connection()->prepare('SELECT* from users where id = :id');
+		$query->execute(array('id'=>$id));
+		if($row=$query->fetch()){
+			return new User($row);
+		} else {
 			return null;
 		}
 	}

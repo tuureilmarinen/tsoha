@@ -22,6 +22,9 @@ $routes->get('/task/new', function(){
 $routes->get('/task/:id', function($id){
 	TaskController::show($id);
 });
+$routes->post('/task/:id', function($id){
+	TaskController::update($id);
+});
 $routes->post('/task/:id/destroy', function($id){
 	TaskController::destroy($id);
 });
