@@ -41,8 +41,8 @@
           <!-- Navigaation linkit -->
           <li><a href="{{base_path}}">Etusivu</a></li>
           <li>{% if user_logged_in %}
-          Hi, <a href="{{base_path}}/user/{{user_logged_in.id}}" class="btn btn-small btn-default">{{user_logged_in.username}}</a>! <form action="{{base_path}}/logout" method="post"><button class="btn btn-small btn-danger">Logout</button></
-          form>{% else %}
+          Hi, <a href="{{base_path}}/user/{{user_logged_in.id}}" class="btn btn-small btn-default">{{user_logged_in.username}}</a>! <form action="{{base_path}}/logout" method="post"><button class="btn btn-small btn-danger">Logout</button></form>
+          {% else %}
           <a href="{{base_path}}/login" class="btn btn-small btn-primary">Login</a>
           {% endif %}
           </li>
