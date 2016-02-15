@@ -24,11 +24,12 @@ class TaskController extends BaseController{
     if($errors==0){
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
       $task->save();
-
+      var_dump($task);
     // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
     //Redirect::to('/task/' . $task->id, array('message' => 'Task has been added!'));
       Redirect::to('/task', array('message' => 'Task has been added!'));
     } else {
+      var_dump($errors);
       View::make('task/new.html', array('errors' => $errors, 'attributes' => $params));
     }
   }
