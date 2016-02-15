@@ -112,11 +112,6 @@ class Task extends BaseModel{
 			'priority' => $this->priority,
 			'user_id' => $this->user_id));
 		$row = $query->fetch();
-		//var_dump($this);
-		//var_dump($row);
-		if(!$row){
-			die("tietokantavirhe");
-		}
 		$this->id = $row['id'];
 	}
 	public static function destroy($id){

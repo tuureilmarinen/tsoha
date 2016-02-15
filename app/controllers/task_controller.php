@@ -3,7 +3,8 @@ require_once 'app/models/task.php';
 class TaskController extends BaseController{
   public static function index(){
     // Haetaan kaikki taskit tietokannasta
-    $tasks = Task::all();
+    parent::check_logged_in();
+    $tasks = Task::find_by_user(get_user_logged_in()->id);
     // Renderöidään views/task kansiossa sijaitseva tiedosto index.html muuttujan $tasks datalla
     View::make('task/index.html', array('tasks' => $tasks));
   }
@@ -20,16 +21,13 @@ class TaskController extends BaseController{
     $params['user_id']=parent::get_user_logged_in()->id;
     $task=new Task($params);
     $errors=$task->validate();
-    var_dump($task);
     if(!$errors){
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
       $task->save();
-      var_dump($task);
     // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
     //Redirect::to('/task/' . $task->id, array('message' => 'Task has been added!'));
       Redirect::to('/task', array('message' => 'Task has been added!'));
     } else {
-      var_dump($errors);
       View::make('task/new.html', array('errors' => $errors, 'attributes' => $params));
     }
   }
