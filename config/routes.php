@@ -37,3 +37,9 @@ $routes->get('/login', function(){
 $routes->post('/logout', function(){
 	SessionController::destroy();
 });
+$routes->get('/signup', function(){
+	UserController::create();
+});
+$routes->post('/signup', function(){
+	UserController::store();
+});
