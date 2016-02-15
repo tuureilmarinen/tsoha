@@ -27,8 +27,5 @@ class User extends BaseModel{
 		$query->execute(array('id'=>$id));
 		if($row=$query->fetch()){
 			return new User($row);
-		} else {
-			return null;
 		}
 	}
-}
