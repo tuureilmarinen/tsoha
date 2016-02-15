@@ -20,7 +20,7 @@ class BaseController{
       // Toteuta kirjautumisen tarkistus tähän.
       // Jos käyttäjä ei ole kirjautunut sisään, ohjaa hänet toiselle sivulle (esim. kirjautumissivulle).
     if(get_user_logged_in()==null){
-      Redirect::to("/tsoha/login");
+      Redirect::to("/login");
     } else {
       return true;
     }

@@ -5,7 +5,7 @@ class SessionController extends BaseController{
 		$user=User::authenticate($_POST['username'],$_POST['password']);
 		if($user){
 			$_SESSION['user']=$user->id;
-			Redirect::to("/tsoha/task",array('message' => "Welcome back."));
+			Redirect::to("/task",array('message' => "Welcome back."));
 		}
 		View::make('session/new.html', array('errors' => array("Wrong password or username.")));
 	}
