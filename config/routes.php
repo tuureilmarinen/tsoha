@@ -31,6 +31,12 @@ $routes->post('/task/:id/destroy', function($id){
 $routes->get('/task/:id/edit', function($id){
 	TaskController::edit($id);
 });
+$routes->get('/task/:id/markasdone', function($id){
+	TaskController::markasdone($id);
+});
+$routes->get('/task/:id/markasundone', function($id){
+	TaskController::markasundone($id);
+});
 $routes->post('/login', function(){
 	SessionController::store();
 });

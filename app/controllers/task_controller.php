@@ -47,10 +47,10 @@ class TaskController extends BaseController{
 
 
     $task = Task::find($id);
-    $task->$p['name'];
-    $task->$p['description'];
-    $task->int($p['priority']);
-    $task->$p['completed'];
+    $task->name=$p['name'];
+    $task->description=$p['description'];
+    $task->priority=int($p['priority']);
+    $task->completed=$p['completed'];
     $errors = $task->validate();
 
     if(count($errors) > 0){
@@ -65,6 +65,24 @@ class TaskController extends BaseController{
   public static function destroy($id){
     Task::destroy($id);
     Redirect::to('/task', array('message' => 'Task has been removed.'));
+  }
+  public static function markasdone($id){
+    $u=get_user_logged_in()->id;
+    $t=Task::find($id);
+    if($u==$t->user_id){
+      $t->completed=true;
+      $t->update();
+    }
+    Redirect::to('/task', array('message' => 'marked as done'));
+  }
+  public static function markasundone($id){
+    $u=get_user_logged_in()->id;
+    $t=Task::find($id);
+    if($u==$t->user_id){
+      $t->completed=false;
+      $t->update();
+    }
+    Redirect::to('/task', array('message' => 'marked as done'));
   }
   /*public function destroy(){
     $task = new Task(array('id' => $this->id));
