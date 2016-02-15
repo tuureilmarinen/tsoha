@@ -113,7 +113,7 @@ class Task extends BaseModel{
 			'user_id' => $this->user_id));
 		$row = $query->fetch();
 		if(!$row){
-			die("tietokantavirhe")
+			die("tietokantavirhe");
 		}
 		$this->id = $row['id'];
 	}
