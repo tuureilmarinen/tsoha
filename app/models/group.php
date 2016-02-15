@@ -5,6 +5,7 @@ class Group extends BaseModel{
   // Konstruktori
 	public function __construct($attributes){
 		parent::__construct($attributes);
+		$this->validators=array("validate_name");
 	}
 	public function find_tasks(){
 		$r=array();
@@ -14,5 +15,26 @@ class Group extends BaseModel{
 			$r[]=new Task($row);	// toimiikohan?		
 		}
 		return $r;
+	}
+	public static function all(){
+		$r=array();
+		$query=DB::connection()->prepare("SELECT * FROM groups");
+		$query->execute();
+		while($row = $query->fetch()){
+			$r[]=new Group($row);	// toimiikohan?		
+		}
+		return $r;
+	}
+	public static find($id){
+		$r=array();
+		$query=DB::connection()->prepare("SELECT * FROM groups WHERE id = :group_id");
+		$query->execute(array('group_id' => $id));
+		$row = $query->fetch();
+		if($row){
+			return new Group($row);
+		} else {
+			return null;
+		}
+		
 	}
 }

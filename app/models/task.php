@@ -78,10 +78,18 @@ class Task extends BaseModel{
 			'completed' => $this->completed,
 			'priority' => $this->priority,
 			'user_id' => $this->user_id));
-    // Haetaan kyselyn tuottama rivi, joka sisältää lisätyn rivin id-sarakkeen arvon
 		$row = $query->fetch();
-    // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
 		$this->id = $row['id'];
+	}
+	public function destroy(){
+		Task::destroy($this->id);
+	}
+	public static function destroy($id){
+		$query=DB::connection()->prepare('DELETE FROM tasks WHERE id= :id');
+		$query->execute(array('id' => $id));
+	}
+	public function update($args){
+		
 	}
 
 	public function validate(){

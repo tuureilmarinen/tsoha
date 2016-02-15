@@ -17,25 +17,54 @@ class TaskController extends BaseController{
       'publisher' => $params['publisher'],
       'published' => $params['published']
       ));*/
-$task=new Task($params);
+    $task=new Task($params);
 
-if($task->validate()==0){
+    if($task->validate()==0){
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
-  $task->save();
+      $task->save();
 
     // Ohjataan käyttäjä lisäyksen jälkeen pelin esittelysivulle
     //Redirect::to('/task/' . $task->id, array('message' => 'Task has been added!'));
-  Redirect::to('/task', array('message' => 'Task has been added!'));
-} else {
-  View::make('task/new.html', array('errors' => $errors, 'attributes' => $attributes));
-}
+      Redirect::to('/task', array('message' => 'Task has been added!'));
+    } else {
+      View::make('task/new.html', array('errors' => $errors, 'attributes' => $attributes));
+    }
+  }
+  public static function show($id){
+    $task = Task::find(intval($id));
+    View::make('task/show.html', array('task' => $task));
+  }
+  public static function create(){
+    View::make('task/new.html');
+  }
+  public static function edit($id){
+    $task = Task::find($id);
+    View::make('task/edit.html', array('attributes' => $task));
+  }
+  public static function update($id){
+    $params = $_POST;
 
-}
-public static function show($id){
- $task = Task::find(intval($id));
- View::make('task/show.html', array('task' => $task));
-}
-public static function create(){
-  View::make('task/new.html');
-}
+
+    $game = new Task($params);
+    $errors = $task->errors();
+
+    if(count($errors) > 0){
+      View::make('task/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+    }else{
+      $game->update();
+
+      Redirect::to('/task/' . $game->id, array('message' => 'Task has been modified successfully.'));
+    }
+  }
+
+  public static function destroy($id){
+    $task = new Task(array('id' => $id));
+    $task->destroy();
+    Redirect::to('/task', array('message' => 'Task has been removed.'));
+  }
+  public function destroy(){
+    $task = new Task(array('id' => $this->id));
+    $task->destroy();
+    Redirect::to('/task', array('message' => 'Task has been removed.'));
+  }
 }

@@ -19,11 +19,6 @@
 		{{task.description}}
 	</div>
 	<ul class="list-inline" style="margin-left: 10px;">
-		{% for g in task.groups %}
-		<li>
-			<a class="btn btn-xs btn-default" href="{{base_path}}/group/{{g.id}}">{{g.name}}</a>
-		</li>
-		{% endfor %}
 		<li>
 			<a class="btn btn-xs btn-default" href="{{base_path}}/task/{{task.id}}"><span class="glyphicon glyphicon-eye-open"></span></a>
 		</li>
@@ -31,15 +26,23 @@
 			<a class="btn btn-xs btn-primary" href="{{base_path}}/task/{{task.id}}/edit"><span class="glyphicon glyphicon-pencil"></span></a>
 		</li>
 		<li>
-		{% if task.completed %}
-			<a class="btn btn-xs btn-danger" rel="nofollow" data-method="post" href="{{base_path}}/tasks/{{task.id}}/markasundone"><span class="glyphicon glyphicon-remove"></span></a>
-		{% else %}
+			{% if task.completed %}
+			<a class="btn btn-xs btn-danger" rel="nofollow" href="{{base_path}}/tasks/{{task.id}}/markasundone"><span class="glyphicon glyphicon-remove"></span></a>
+			{% else %}
 			<a class="btn btn-xs btn-success" rel="nofollow" data-method="post" href="{{base_path}}/tasks/{{task.id}}/markasdone"><span class="glyphicon glyphicon-ok"></span></a>
-		{% endif %}
+			{% endif %}
 		</li>
 		<li>
-			<a data-confirm="Are you sure?" class="btn btn-xs btn-default" rel="nofollow" data-method="delete" href="{{base_path}}/tasks/{{task.id}}"><span class="glyphicon glyphicon-trash"></span></a>
+			<form method="post" action="{{base_path}}/task/{{task.id}}/destroy" style="display: inline-block;">
+				<button type="submit" class="btn btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
+			</form>
+			<!--<a data-confirm="Are you sure?" class="btn btn-xs btn-default" rel="nofollow" data-method="delete" href="{{base_path}}/tasks/{{task.id}}"><span class="glyphicon glyphicon-trash"></span></a> -->
 		</li>
+		{% for g in task.groups %}
+		<li>
+			<a class="btn btn-xs btn-default" href="{{base_path}}/group/{{g.id}}">{{g.name}}</a>
+		</li>
+		{% endfor %}
 	</ul>
 </div>
 {% endfor %}
@@ -73,5 +76,5 @@
         </tr>
       {% endfor %}
     </tbody>
-  </table>-->
+</table>-->
 {% endblock %}
