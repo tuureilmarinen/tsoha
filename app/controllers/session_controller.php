@@ -2,7 +2,7 @@
 require 'app/models/user.php';
 class SessionController extends BaseController{
 	public static function store(){
-		$user=User::authenticate($_POST['user'],$_POST['password']);
+		$user=User::authenticate($_POST['username'],$_POST['password']);
 		if($user){
 			$_SESSION['user']=$user->id;
 			Redirect::to("/tsoha/task",array('message' => "Welcome back."));
