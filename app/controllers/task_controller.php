@@ -20,7 +20,7 @@ class TaskController extends BaseController{
     $params['user_id']=parent::get_user_logged_in()->id;
     $task=new Task($params);
     $errors=$task->validate();
-    //var_dump($task);
+    var_dump($task);
     if($errors==0){
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
       $task->save();
