@@ -6,6 +6,7 @@ class Task extends BaseModel{
   // Konstruktori
 	public function __construct($attributes){
 		parent::__construct($attributes);
+		$this->validators=array('validate_name','validate_description','validate_priority','validate_user');
 	}
 	public static function all(){
     // Alustetaan kysely tietokantayhteydellämme
@@ -69,8 +70,8 @@ class Task extends BaseModel{
 	}
 	public function save(){
     // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
-		$query = DB::connection()->prepare('INSERT INTO tasks (name, description, completed, priority, user_id, created_at, updated_at)
-			VALUES (:name, :description, :completed, :priority, :user_id, now(), now()) RETURNING id');
+		$query = DB::connection()->prepare('INSERT INTO tasks (id,name, description, completed, priority, user_id, created_at, updated_at)
+			VALUES (DEFAULT, :name, :description, :completed, :priority, :user_id, now(), now()) RETURNING id');
     // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
 		$query->execute(array('name' => $this->name,
 			'description' => $this->description,
@@ -82,4 +83,48 @@ class Task extends BaseModel{
     // Asetetaan lisätyn rivin id-sarakkeen arvo oliomme id-attribuutin arvoksi
 		$this->id = $row['id'];
 	}
-}
+
+	public function validate(){
+		$errors=array();
+		foreach($this->validators as $validator{
+			$newerrors=$this->{$validator}();
+			$errors=array_merge($errors,$newerrors);
+		}
+		return $errors;
+	}
+
+	public function validate_name(){
+		$errors = array();
+		if($this->name == '' || $this->name == null){
+			$errors[] = 'Nimi ei saa olla tyhjä!';
+		}
+		if(strlen($this->name) < 3){
+			$errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
+		}
+
+		return $errors;
+	}
+	public function validate_description(){
+		$errors=array();
+		if($this->description == '' || $this->description == null){
+			$errors[] = 'Description cannot be empty';
+		}
+		if(strlen($this->name) < 3){
+			$errors[] = 'Description cannot be less than 3 characters.';
+		}
+		return $errors;
+	}
+	public function validate_user(){
+		$errors=array();
+		if(!is_numeric($this->user_id)){ //TODO: tarkista tietokannasta voiko userid olla muu kuin int
+			$errors[]="UserID is invalid"; 
+		}
+		return $errors;
+	}
+	public function validate_priority(){
+		$errors=array();
+		if(!is_numeric($this->priority)){ //TODO: tarkista tietokannasta voiko userid olla muu kuin int
+			$errors[]="priority must be integer"; 
+		}
+		return $errors;
+	}
