@@ -34,7 +34,7 @@ class User extends BaseModel{
 	}
 	public static function store(){
 		$query=DB::connection()->prepare('INSERT INTO users(id,username,password_digest,updated_at,created_at) VALUES(DEFAULT, :username, :password_digest, now(), now()) RETURNING id');
-		$p=$_POST[];
+		$p=$_POST;
 		$query->execute(array(
 			'username' => $p['username'],
 			'password_digest' => self::password_hash($p['password'])));
