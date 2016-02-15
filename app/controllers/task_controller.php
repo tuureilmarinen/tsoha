@@ -4,7 +4,7 @@ class TaskController extends BaseController{
   public static function index(){
     // Haetaan kaikki taskit tietokannasta
     parent::check_logged_in();
-    $tasks = Task::find_by_user(get_user_logged_in()->id);
+    $tasks = Task::find_by_user(parent::get_user_logged_in()->id);
     // Renderöidään views/task kansiossa sijaitseva tiedosto index.html muuttujan $tasks datalla
     View::make('task/index.html', array('tasks' => $tasks));
   }
