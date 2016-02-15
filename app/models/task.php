@@ -121,12 +121,12 @@ class Task extends BaseModel{
 	public static function update($id){
 		$query=DB::connection()->prepare('UPDATE tasks SET name = :name, description = :description, user_id = :user_id, completed = :completed, priority = :priority, updated_at=now() WHERE id=:id');
 		$query->execute(array(
-				'id' => $id,
-				'name' => $_POST['name'],
-				'user_id' => $_POST['user_id'],
-				'description' => $_POST['description'],
-				'completed' => $_POST['completed'],
-				'priority' => $_POST['priority']));
+			'id' => $id,
+			'name' => $_POST['name'],
+			'user_id' => $_POST['user_id'],
+			'description' => $_POST['description'],
+			'completed' => $_POST['completed'],
+			'priority' => $_POST['priority']));
 	}
 
 	public function validate(){
@@ -173,3 +173,4 @@ class Task extends BaseModel{
 		}
 		return $errors;
 	}
+}
