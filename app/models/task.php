@@ -104,7 +104,7 @@ class Task extends BaseModel{
 	public function save(){
     // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
 		$query = DB::connection()->prepare('INSERT INTO tasks (id,name, description, completed, priority, user_id, created_at, updated_at)
-			VALUES (DEFAULT, :name, :description, :completed, :priority, :user_id, now(), now()) RETURNING id');
+			VALUES (DEFAULT, :name, :description, :completed, :priority, :user_id, now(), now()) RETURNING id;');
     // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
 		$query->execute(array('name' => $this->name,
 			'description' => $this->description,
@@ -112,6 +112,9 @@ class Task extends BaseModel{
 			'priority' => $this->priority,
 			'user_id' => $this->user_id));
 		$row = $query->fetch();
+		if(!$row){
+			die("tietokantavirhe")
+		}
 		$this->id = $row['id'];
 	}
 	public static function destroy($id){
