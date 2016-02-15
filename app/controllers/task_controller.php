@@ -43,14 +43,18 @@ class TaskController extends BaseController{
     View::make('task/edit.html', array('attributes' => $task));
   }
   public static function update($id){
-    $params = $_POST;
+    $p = $_POST;
 
 
-    $task = new Task($params);
+    $task = Task::find($id);
+    $task->$p['name'];
+    $task->$p['description'];
+    $task->int($p['priority']);
+    $task->(bool)$p['completed'];
     $errors = $task->validate();
 
     if(count($errors) > 0){
-      View::make('task/edit.html', array('errors' => $errors, 'attributes' => $params));
+      View::make('task/edit.html', array('errors' => $errors, 'attributes' => $p));
     }else{
       $task->update();
 
