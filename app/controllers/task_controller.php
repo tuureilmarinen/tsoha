@@ -17,6 +17,7 @@ class TaskController extends BaseController{
       'publisher' => $params['publisher'],
       'published' => $params['published']
       ));*/
+    $params['user_id']=get_user_logged_in()->id;
     $task=new Task($params);
     $errors=$task->validate();
     if($errors==0){
