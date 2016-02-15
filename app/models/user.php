@@ -29,3 +29,4 @@ class User extends BaseModel{
 			return new User($row);
 		}
 	}
+}
