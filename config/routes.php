@@ -28,6 +28,9 @@ $routes->post('/task/:id', function($id){
 $routes->post('/task/:id/destroy', function($id){
 	TaskController::destroy($id);
 });
+$routes->get('/task/:id/edit', function($id){
+	TaskController::edit($id);
+});
 $routes->post('/login', function(){
 	SessionController::store();
 });

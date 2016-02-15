@@ -1,5 +1,7 @@
 # Tietokantasovelluksen esittelysivu
 
+testitunnukset monni:monni
+
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://iltu.cs.helsinki.fi/tsoha)

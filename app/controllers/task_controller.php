@@ -46,15 +46,15 @@ class TaskController extends BaseController{
     $params = $_POST;
 
 
-    $game = new Task($params);
-    $errors = $task->errors();
+    $task = new Task($params);
+    $errors = $task->validate();
 
     if(count($errors) > 0){
       View::make('task/edit.html', array('errors' => $errors, 'attributes' => $attributes));
     }else{
-      $game->update();
+      $task->update();
 
-      Redirect::to('/task/' . $game->id, array('message' => 'Task has been modified successfully.'));
+      Redirect::to('/task/' . $task->id, array('message' => 'Task has been modified successfully.'));
     }
   }
 
