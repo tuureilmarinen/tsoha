@@ -29,6 +29,9 @@ $routes->post('/task/:id/destroy', function($id){
 	TaskController::destroy($id);
 });
 $routes->post('/login', function(){
+	SessionController::store();
+});
+$routes->get('/login', function(){
 	SessionController::create();
 });
 $routes->post('/logout', function(){
