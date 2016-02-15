@@ -27,7 +27,7 @@ class TaskController extends BaseController{
     //Redirect::to('/task/' . $task->id, array('message' => 'Task has been added!'));
       Redirect::to('/task', array('message' => 'Task has been added!'));
     } else {
-      View::make('task/new.html', array('errors' => $errors, 'attributes' => $attributes));
+      View::make('task/new.html', array('errors' => $errors, 'attributes' => $params));
     }
   }
   public static function show($id){
