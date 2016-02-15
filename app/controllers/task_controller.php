@@ -18,8 +18,8 @@ class TaskController extends BaseController{
       'published' => $params['published']
       ));*/
     $task=new Task($params);
-
-    if($task->validate()==0){
+    $errors=$task->validate();
+    if($errors==0){
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
       $task->save();
 
