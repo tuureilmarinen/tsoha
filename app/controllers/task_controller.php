@@ -50,7 +50,7 @@ class TaskController extends BaseController{
     $errors = $task->validate();
 
     if(count($errors) > 0){
-      View::make('task/edit.html', array('errors' => $errors, 'attributes' => $attributes));
+      View::make('task/edit.html', array('errors' => $errors, 'attributes' => $params));
     }else{
       $task->update();
 
