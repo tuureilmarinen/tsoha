@@ -1,5 +1,5 @@
 <?php
-require 'app/models/user.php';
+require_once 'app/models/user.php';
 class SessionController extends BaseController{
 	public static function store(){
 		$user=User::authenticate($_POST['username'],$_POST['password']);

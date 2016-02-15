@@ -1,5 +1,5 @@
 <?php
-require 'app/models/task.php';
+require_once 'app/models/task.php';
 class TaskController extends BaseController{
   public static function index(){
     // Haetaan kaikki taskit tietokannasta

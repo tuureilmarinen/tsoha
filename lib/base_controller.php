@@ -1,5 +1,5 @@
 <?php
-require 'app/models/user.php';
+require_once 'app/models/user.php';
 class BaseController{
 
   public static function get_user_logged_in(){

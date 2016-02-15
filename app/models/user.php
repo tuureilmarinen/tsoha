@@ -1,6 +1,6 @@
 <?
 //require 'app/models/group.php';
-require 'app/models/task.php';
+require_once 'app/models/task.php';
 class User extends BaseModel{
   // Attribuutit
 	public $id, $username, $password_digest;
