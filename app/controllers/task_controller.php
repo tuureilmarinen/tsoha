@@ -21,7 +21,7 @@ class TaskController extends BaseController{
     $task=new Task($params);
     $errors=$task->validate();
     var_dump($task);
-    if($errors==0){
+    if(!$errors){
     // Kutsutaan alustamamme olion save metodia, joka tallentaa olion tietokantaan
       $task->save();
       var_dump($task);
