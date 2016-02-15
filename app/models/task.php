@@ -88,13 +88,20 @@ class Task extends BaseModel{
 		$query=DB::connection()->prepare('DELETE FROM tasks WHERE id= :id');
 		$query->execute(array('id' => $id));
 	}
-	public function update($args){
-		
+	public function update(){
+		$query=DB::connection()->prepare('UPDATE tasks SET name = :name, description = :description, user_id = :user_id, completed = :completed, priority = :priority, updated_at=now() WHERE id=:id');
+		$query->execute(array(
+				'id' => $this->id,
+				'name' => $this->name,
+				'user_id' => $this->user_id,
+				'description' => $this->description,
+				'completed' => $this->completed,
+				'priority' => $this->priority));
 	}
 
 	public function validate(){
 		$errors=array();
-		foreach($this->validators as $validator{
+		foreach($this->validators as $validator){
 			$newerrors=$this->{$validator}();
 			$errors=array_merge($errors,$newerrors);
 		}
