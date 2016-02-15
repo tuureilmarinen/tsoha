@@ -19,7 +19,7 @@ class BaseController{
   public static function check_logged_in(){
       // Toteuta kirjautumisen tarkistus tähän.
       // Jos käyttäjä ei ole kirjautunut sisään, ohjaa hänet toiselle sivulle (esim. kirjautumissivulle).
-    if(get_user_logged_in()==null){
+    if(self::get_user_logged_in()==null){
       Redirect::to("/login");
     } else {
       return true;
