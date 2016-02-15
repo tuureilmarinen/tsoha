@@ -11,13 +11,16 @@ class User extends BaseModel{
 	}
 	public static function authenticate($user,$password){
 		$query=DB::connection()->prepare('SELECT users.* from users where username=:username and password_digest=:password_digest;');
-		$password_digest = crypt($password,self::$salt);
+		$password_digest = self::password_hash($password);
 		$query->execute(array("username" => $user, "password_digest" => $password_digest));
 		if($row=$query->fetch()){
 			return new User($row);
 		} else {
 			return null;
 		}
+	}
+	public static function password_hash($string){
+		return crypt($string,self::$salt);
 	}
 	public function find_tasks(){
 		return Task::find_by_user($this->id);
@@ -29,8 +32,16 @@ class User extends BaseModel{
 			return new User($row);
 		}
 	}
-	public function store(){
-		$query=DB::connection()->prepare('INSERT INTO users(');
-
+	public static function store(){
+		$query=DB::connection()->prepare('INSERT INTO users(id,username,password_digest,updated_at,created_at) VALUES(DEFAULT, :username, :password_digest, now(), now()) RETURNING id');
+		$p=$_POST[];
+		$query->execute(array(
+			'username' => $p['username'],
+			'password_digest' => self::password_hash($p['password'])));
+		$row=$query->fetch();
+		if($row){
+			return new User($row);
+		}
+		return null;
 	}
 }

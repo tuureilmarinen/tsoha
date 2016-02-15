@@ -34,7 +34,7 @@
 		</li>
 		<li>
 			<form method="post" action="{{base_path}}/task/{{task.id}}/destroy" style="display: inline-block;">
-				<button type="submit" class="btn btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
+				<button type="submit" name="id" value="{{task.id}}" class="btn btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
 			</form>
 			<!--<a data-confirm="Are you sure?" class="btn btn-xs btn-default" rel="nofollow" data-method="delete" href="{{base_path}}/tasks/{{task.id}}"><span class="glyphicon glyphicon-trash"></span></a> -->
 		</li>
