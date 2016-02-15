@@ -2,7 +2,7 @@
 {% block content %}
   <h1>edit task</h1>
 
-  <form method="post" action="{{base_path}}/task">
+  <form method="post" action="{{base_path}}/task/{{attributes.id}}">
     <div class="form-group">
       <label>Name</label>
       <input name="name" class="form-control" value="{{attributes.name}}" type="text">
