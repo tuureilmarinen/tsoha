@@ -1,5 +1,5 @@
 <?
-require 'app/models/group.php';
+//require 'app/models/group.php';
 require 'app/models/task.php';
 class User extends BaseModel{
   // Attribuutit
