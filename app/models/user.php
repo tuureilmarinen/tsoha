@@ -11,7 +11,7 @@ class User extends BaseModel{
 	}
 	public static function authenticate($user,$password){
 		$query=DB::connection()->prepare('SELECT users.* from users where username=:username and password_digest=:password_digest;');
-		$password_digest = crypt($password,$this->salt);
+		$password_digest = crypt($password,self::$salt);
 		$query->execute(array("username" => $user, "password_digest" => $password_digest));
 		if($row=$query->fetch()){
 			return new User($row);
