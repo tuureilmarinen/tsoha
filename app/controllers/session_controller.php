@@ -11,6 +11,7 @@ class SessionController extends BaseController{
 	}
 	public static function destroy(){
 		$_SESSION['user']=null;
+		Redirect::to("/");
 	}
 	public static function create(){
 		View::make('session/new.html');

@@ -29,4 +29,8 @@ class User extends BaseModel{
 			return new User($row);
 		}
 	}
+	public function store(){
+		$query=DB::connection()->prepare('INSERT INTO users(');
+
+	}
 }
