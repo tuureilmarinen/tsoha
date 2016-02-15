@@ -25,7 +25,7 @@ class Group extends BaseModel{
 		}
 		return $r;
 	}
-	public static find($id){
+	public static function find($id){
 		$r=array();
 		$query=DB::connection()->prepare("SELECT * FROM groups WHERE id = :group_id");
 		$query->execute(array('group_id' => $id));
