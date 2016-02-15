@@ -50,7 +50,7 @@ class TaskController extends BaseController{
     $task->$p['name'];
     $task->$p['description'];
     $task->int($p['priority']);
-    $task->(bool)$p['completed'];
+    $task->$p['completed'];
     $errors = $task->validate();
 
     if(count($errors) > 0){
