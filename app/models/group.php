@@ -66,7 +66,7 @@ class Group extends BaseModel{
 		return (strlen($this->name)>3);
 	}
 	public static function store(){
-		$query=DB::connection()->prepare('INSERT INTO users(id,name,user_id,updated_at,created_at) VALUES(DEFAULT, :name, :user_id, now(), now()) RETURNING id');
+		$query=DB::connection()->prepare('INSERT INTO groups(id,name,user_id,updated_at,created_at) VALUES(DEFAULT, :name, :user_id, now(), now()) RETURNING id');
 		$p=$_POST;
 		$query->execute(array(
 			'name' => $p['name'],
