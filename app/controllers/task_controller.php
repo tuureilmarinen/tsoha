@@ -55,7 +55,7 @@ class TaskController extends BaseController{
     $task->name=$p['name'];
     $task->description=$p['description'];
     $task->priority=intval($p['priority']);
-    $task->completed=$p['completed'];
+    $task->completed=(isset($p['completed'])? $p['completed'] : false);
     $errors = $task->validate();
 
     if(count($errors) > 0){
