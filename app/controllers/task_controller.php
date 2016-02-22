@@ -9,6 +9,7 @@ class TaskController extends BaseController{
     View::make('task/index.html', array('tasks' => $tasks,'title'=>'my tasks'));
   }
   public static function store(){
+    parent::check_logged_in();
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
     $params = $_POST;
     // Alustetaan uusi task-luokan olion käyttäjän syöttämillä arvoilla
@@ -32,17 +33,21 @@ class TaskController extends BaseController{
     }
   }
   public static function show($id){
+    parent::check_logged_in();
     $task = Task::find(intval($id));
     View::make('task/show.html', array('task' => $task,'title'=>'view task'));
   }
   public static function create(){
+    parent::check_logged_in();
     View::make('task/new.html',array('title'=>'new task'));
   }
   public static function edit($id){
+    parent::check_logged_in();
     $task = Task::find($id);
     View::make('task/edit.html', array('attributes' => $task,'title'=>'edit '.$task->name));
   }
   public static function update($id){
+    parent::check_logged_in();
     $p = $_POST;
 
 
@@ -63,6 +68,7 @@ class TaskController extends BaseController{
   }
 
   public static function destroy($id){
+    parent::check_logged_in();
     Task::destroy($id);
     Redirect::to('/task', array('message' => 'Task has been removed.'));
   }

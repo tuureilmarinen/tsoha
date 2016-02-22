@@ -1,10 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>mes tâches</h1>
-
-<p>
-	<a href="{{base_path}}/task/new" class="btn btn-success">nouvelle tâche</a>
-</p>
 
 {% for task in tasks %}
 <div class="panel panel-default">
