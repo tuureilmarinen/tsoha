@@ -4,10 +4,6 @@ class GroupController extends BaseController{
 	public static function create(){
 		View::make("group/new.html");
 	}
-	public static function destroy($id){
-		Group::destroy($id);
-		Redirect::to("group");
-	}
 	public static function store(){
 		$group=Group::store();
 		if(!$group){
