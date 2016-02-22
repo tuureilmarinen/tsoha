@@ -41,9 +41,11 @@ class Group extends BaseModel{
 		$r=array();
 		$query=DB::connection()->prepare("SELECT * FROM groups WHERE user_id = :user_id");
 		$query->execute(array('user_id' => $user_id));
-		$row = $query->fetch();
-		if($row){
-			return new Group($row);
+		while($row = $query->fetch())
+			$r[]=new Group($row);
+		}
+		if($r){
+			return $r;
 		} else {
 			return null;
 		}
