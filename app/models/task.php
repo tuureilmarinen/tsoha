@@ -100,7 +100,7 @@ class Task extends BaseModel{
 
 		return $tasks;
 	}
-		public static function find_by_user_and_group($user_id,$group_id){
+	public static function find_by_user_and_group($user_id,$group_id){
 		$query = DB::connection()->prepare('SELECT * FROM tasks WHERE user_id = :user_id AND group_id = :group_id');
 		$query->execute(array('user_id' => $user_id,'group_id' => $group_id));
 		$rows = $query->fetchAll();
@@ -139,6 +139,7 @@ class Task extends BaseModel{
 			'user_id' => $this->user_id));
 		$row = $query->fetch();
 		$this->id = $row['id'];
+		save_group_joins($this->id,$_POST['groups'])
 	}
 	public static function destroy($id){
 		$query=DB::connection()->prepare('DELETE FROM tasks WHERE id= :id');
@@ -153,6 +154,7 @@ class Task extends BaseModel{
 			'description' => $_POST['description'],
 			'completed' => $_POST['completed'],
 			'priority' => $_POST['priority']));
+		save_group_joins($id,$_POST['groups'])
 	}
 	/*public static function markAsDone($id){
 		$query=DB::connection()->prepare('UPDATE tasks SET completed=TRUE WHERE id = :id');
@@ -216,5 +218,13 @@ class Task extends BaseModel{
 			$errors[]="priority must be an integer"; 
 		}
 		return $errors;
+	}
+	private function save_group_joins($task_id,$groups){
+		$query=DB::connection()->prepare('DELETE FROM task_to_groups WHERE task_id = :task_id');
+		$query->execute(array('task_id'=>$task_id));
+		$query=DB::connection()->prepare('INSERT INTO task_to_groups(task_id,group_id,created_at,updated_at) VALUES(:task_id,:group_id,now(),now()');
+		foreach($groups as $g){
+			$query->execute(array('task_id'=>$task_id,'group_id'=>$g));
+		}
 	}
 }
