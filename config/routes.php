@@ -43,7 +43,7 @@ $routes->post('/login', function(){
 $routes->get('/login', function(){
 	SessionController::create();
 });
-$routes->post('/logout', function(){
+$routes->get('/logout', function(){
 	SessionController::destroy();
 });
 $routes->get('/signup', function(){
