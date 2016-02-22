@@ -25,7 +25,7 @@
 
   <div class="form-group">
     <label>Groups</label>
-    <select class="form-control" name="categories[]" multiple="">
+    <select class="form-control" name="groups[]" multiple="">
       {% for group in groups %}
       <option value="{{group.id}}">{{group.name}}</option>
       {% endfor %}
