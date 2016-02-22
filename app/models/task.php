@@ -152,7 +152,7 @@ class Task extends BaseModel{
 			'name' => $_POST['name'],
 			'user_id' => $_SESSION['user'],
 			'description' => $_POST['description'],
-			'completed' => (isset($_POST['completed'])? $_POST['completed'] : false),
+			'completed' => (isset($_POST['completed'])? $_POST['completed'] : 0),
 			'priority' => $_POST['priority']));
 		self::save_group_joins($id,(isset($_POST['groups'])? $_POST['groups'] : array()));
 	}
