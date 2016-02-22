@@ -223,7 +223,7 @@ class Task extends BaseModel{
 		$query=DB::connection()->prepare('DELETE FROM task_to_groups WHERE task_id = :task_id');
 		$query->execute(array('task_id'=>$task_id));
 		foreach($groups as $g){
-			$query=DB::connection()->prepare('INSERT INTO task_to_groups(task_id,group_id,created_at,updated_at) VALUES(:task_id,:group_id,now(),now()');
+			$query=DB::connection()->prepare('INSERT INTO task_to_groups(task_id,group_id,created_at,updated_at) VALUES(:task_id,:group_id,now(),now())');
 			$query->execute(array('task_id'=>$task_id,'group_id'=>$g));
 			}
 		}
