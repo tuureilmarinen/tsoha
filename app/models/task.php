@@ -150,7 +150,7 @@ class Task extends BaseModel{
 		$query->execute(array(
 			'id' => $id,
 			'name' => $_POST['name'],
-			'user_id' => $_POST['user_id'],
+			'user_id' => $_SESSION['user'],
 			'description' => $_POST['description'],
 			'completed' => $_POST['completed'],
 			'priority' => $_POST['priority']));
