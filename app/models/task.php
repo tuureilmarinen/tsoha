@@ -1,5 +1,5 @@
 <?php
-require 'app/models/group.php';
+require_once 'app/models/group.php';
 class Task extends BaseModel{
   // Attribuutit
 	public $id, $name, $description, $completed, $priority, $user_id, $created_at, $updated_at, $groups;

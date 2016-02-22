@@ -1,5 +1,5 @@
 <?php
-require 'app/models/group.php';
+require_once 'app/models/group.php';
   class HelloWorldController extends BaseController{
 
     public static function hello(){
