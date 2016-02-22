@@ -16,7 +16,7 @@ class Group extends BaseModel{
 		}
 		return $r;
 	}
-	public static function task_count(){
+	public function task_count(){
 		$query=DB::connection()->prepare("SELECT COUNT(*) FROM tasks AS t INNER JOIN task_to_groups AS tg ON t.id=tg.task_id INNER JOIN groups AS g ON tg.group_id=g.id WHERE g.id = :group_id");
 		$query->execute(array('group_id' => $this->id));
 		if($row = $query->fetch()){
