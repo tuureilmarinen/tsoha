@@ -40,13 +40,12 @@
         <ul class="nav navbar-nav">
           <!-- Navigaation linkit -->
           <li><a href="{{base_path}}">Etusivu</a></li>
-          <li>{% if user_logged_in %}
-          Hi, <a href="{{base_path}}/user/{{user_logged_in.id}}" style="display:inline;" class="btn btn-xs btn-default">{{user_logged_in.username}}</a>!</li><li><form action="{{base_path}}/logout" method="post"><button style="display:inline;" class="btn btn-xs btn-danger">Logout</button></form>
-          {% else %}
-          <a href="{{base_path}}/login" class="btn btn-small btn-primary">Login</a>
-          {% endif %}
-          </li>
         </ul>
+        {% if user_logged_in %}
+        Hi, <a href="{{base_path}}/user/{{user_logged_in.id}}" class="glyphicon glyphicon-user">{{user_logged_in.username}}</a>!</li><li><form action="{{base_path}}/logout" method="post"><button style="display:inline;" class="btn btn-xs btn-danger">Logout</button></form>
+        {% else %}
+        <!-- <a href="{{base_path}}/login" class="btn btn-xs btn-primary">Login</a> -->
+        {% endif %}
       </div>
     </div>
   </nav>

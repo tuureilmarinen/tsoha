@@ -102,10 +102,8 @@ class Task extends BaseModel{
 		return $tasks;
 	}
 	public function save(){
-    // Lisätään RETURNING id tietokantakyselymme loppuun, niin saamme lisätyn rivin id-sarakkeen arvon
 		$query = DB::connection()->prepare('INSERT INTO tasks (id,name, description, completed, priority, user_id, created_at, updated_at)
 			VALUES (DEFAULT, :name, :description, :completed, :priority, :user_id, now(), now()) RETURNING id;');
-    // Muistathan, että olion attribuuttiin pääse syntaksilla $this->attribuutin_nimi
 		$query->execute(array('name' => $this->name,
 			'description' => $this->description,
 			'completed' => $this->completed,
@@ -151,10 +149,10 @@ class Task extends BaseModel{
 	public function validate_name(){
 		$errors = array();
 		if($this->name == '' || $this->name == null){
-			$errors[] = 'Nimi ei saa olla tyhjä!';
+			$errors[] = 'Name cannot be empty!';
 		}
 		if(strlen($this->name) < 3){
-			$errors[] = 'Nimen pituuden tulee olla vähintään kolme merkkiä!';
+			$errors[] = 'Name cannot be less than 3 characters.';
 		}
 
 		return $errors;
@@ -179,7 +177,7 @@ class Task extends BaseModel{
 	public function validate_priority(){
 		$errors=array();
 		if(!is_numeric($this->priority)){ //TODO: tarkista tietokannasta voiko userid olla muu kuin int
-			$errors[]="priority must be integer"; 
+			$errors[]="priority must be an integer"; 
 		}
 		return $errors;
 	}

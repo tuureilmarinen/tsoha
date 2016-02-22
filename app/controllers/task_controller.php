@@ -49,7 +49,7 @@ class TaskController extends BaseController{
     $task = Task::find($id);
     $task->name=$p['name'];
     $task->description=$p['description'];
-    $task->priority=int($p['priority']);
+    $task->priority=intval($p['priority']);
     $task->completed=$p['completed'];
     $errors = $task->validate();
 
