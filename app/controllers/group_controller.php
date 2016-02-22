@@ -27,4 +27,9 @@ class GroupController extends BaseController{
 		$group = Group::find(intval($id));
 		View::make('group/show.html', array('group' => $group,'title'=>'view group'));
 	}
+	public static function destroy($id){
+		parent::check_logged_in();
+		Group::destroy($id);
+		Redirect::to('/group', array('message' => 'Group has been removed.'));
+	}
 }
