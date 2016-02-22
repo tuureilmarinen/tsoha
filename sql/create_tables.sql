@@ -2,6 +2,7 @@ CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
 	username varchar UNIQUE NOT NULL,
 	password_digest varchar NOT NULL,
+	admin boolean,
 	created_at timestamp NOT NULL,
 	updated_at timestamp NOT NULL
 );
