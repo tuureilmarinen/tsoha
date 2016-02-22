@@ -85,6 +85,34 @@ class Task extends BaseModel{
 			while($g = $query->fetch()){
 				$groups[]=new Group($g);
 			}
+			$tasks[] = new Task(array(
+				'id' => $row['id'],
+				'name' => $row['name'],
+				'user_id' => $row['user_id'],
+				'description' => $row['description'],
+				'completed' => $row['completed'],
+				'priority' => $row['priority'],
+				'created_at' => $row['created_at'],
+				'updated_at' => $row['updated_at'],
+				'groups' => $groups
+				));
+		}
+
+		return $tasks;
+	}
+		public static function find_by_user_and_group($user_id,$group_id){
+		$query = DB::connection()->prepare('SELECT * FROM tasks WHERE user_id = :user_id AND group_id = :group_id');
+		$query->execute(array('user_id' => $user_id,'group_id' => $group_id));
+		$rows = $query->fetchAll();
+		$tasks = array();
+		foreach($rows as $row){
+			$groups=array();
+			$query=DB::connection()->prepare('SELECT groups.* FROM groups INNER JOIN task_to_groups ON task_to_groups.group_id=groups.id WHERE task_to_groups.task_id = :task_id');
+			
+			$query->execute(array('task_id' => $row['id']));
+			while($g = $query->fetch()){
+				$groups[]=new Group($g);
+			}
       // Tämä on PHP:n hassu syntaksi alkion lisäämiseksi taulukkoon :)
 			$tasks[] = new Task(array(
 				'id' => $row['id'],
@@ -126,6 +154,14 @@ class Task extends BaseModel{
 			'completed' => $_POST['completed'],
 			'priority' => $_POST['priority']));
 	}
+	/*public static function markAsDone($id){
+		$query=DB::connection()->prepare('UPDATE tasks SET completed=TRUE WHERE id = :id');
+		$query->execute(array($id));
+	}
+	public static function markAsUndone($id){
+		$query=DB::connection()->prepare('UPDATE tasks SET completed=FALSE WHERE id = :id');
+		$query->execute(array($id));
+	}*/
 	public function updateInstance(){
 		$query=DB::connection()->prepare('UPDATE tasks SET name = :name, description = :description, user_id = :user_id, completed = :completed, priority = :priority, updated_at=now() WHERE id=:id');
 		$query->execute(array(
