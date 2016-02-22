@@ -70,7 +70,7 @@ class Group extends BaseModel{
 		$p=$_POST;
 		$query->execute(array(
 			'name' => $p['name'],
-			'user_id' => get_user_logged_in()->id));
+			'user_id' => $_SESSION['user']));
 		$row=$query->fetch();
 		if($row){
 			return new User($row);
