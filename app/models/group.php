@@ -7,16 +7,10 @@ class Group extends BaseModel{
 		parent::__construct($attributes);
 		$this->validators=array("validate_name");
 	}
-	public function find_tasks($user_id=null){
+	public function find_tasks(){
 		$r=array();
-		if($user_id){
-			$query=DB::connection()->prepare("SELECT t.* FROM tasks AS t INNER JOIN ON task_to_groups AS tg ON tg.task_id=t.id INNER JOIN groups AS g ON tg.group_id=g.id WHERE g.id = :group_id");
-			$query->execute(array('group_id' => $this->id,'user_id'=>$user_id));
-		} else {
-			$query=DB::connection()->prepare("SELECT t.* FROM tasks AS t INNER JOIN ON task_to_groups AS tg ON tg.task_id=t.id INNER JOIN groups AS g ON tg.group_id=g.id WHERE g.id = :group_id");
-			$query->execute(array('group_id' => $this->id));
-		}
-		
+		$query=DB::connection()->prepare("SELECT t.* FROM tasks AS t INNER JOIN ON task_to_groups AS tg ON tg.task_id=t.id INNER JOIN groups AS g ON tg.group_id=g.id WHERE g.id = :group_id");
+		$query->execute(array('group_id' => $this->id));
 		while($row = $query->fetch()){
 			$r[]=new Task($row);	
 		}
@@ -35,6 +29,18 @@ class Group extends BaseModel{
 		$r=array();
 		$query=DB::connection()->prepare("SELECT * FROM groups WHERE id = :group_id");
 		$query->execute(array('group_id' => $id));
+		$row = $query->fetch();
+		if($row){
+			return new Group($row);
+		} else {
+			return null;
+		}
+		
+	}
+	public static function find_by_user($user_id){
+		$r=array();
+		$query=DB::connection()->prepare("SELECT * FROM groups WHERE user_id = :user_id");
+		$query->execute(array('user_id' => $user_id));
 		$row = $query->fetch();
 		if($row){
 			return new Group($row);
