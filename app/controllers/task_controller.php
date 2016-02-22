@@ -39,12 +39,12 @@ class TaskController extends BaseController{
   }
   public static function create(){
     parent::check_logged_in();
-    View::make('task/new.html',array('title'=>'new task','groups'=>Group::all())));
+    View::make('task/new.html',array('title'=>'new task','groups'=>Group::all()));
   }
   public static function edit($id){
     parent::check_logged_in();
     $task = Task::find($id);
-    View::make('task/edit.html', array('attributes' => $task,'title'=>'edit '.$task->name,'groups'=>Group::all())));
+    View::make('task/edit.html', array('attributes' => $task,'title'=>'edit '.$task->name,'groups'=>Group::all()));
   }
   public static function update($id){
     parent::check_logged_in();
@@ -59,7 +59,7 @@ class TaskController extends BaseController{
     $errors = $task->validate();
 
     if(count($errors) > 0){
-      View::make('task/edit.html', array('errors' => $errors, 'attributes' => $p,'title'=>'edit '.$task->name,'groups'=>Group::all())));
+      View::make('task/edit.html', array('errors' => $errors, 'attributes' => $p,'title'=>'edit '.$task->name,'groups'=>Group::all()));
     }else{
       $task->update();
 
