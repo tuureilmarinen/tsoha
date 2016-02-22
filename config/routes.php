@@ -52,3 +52,15 @@ $routes->get('/signup', function(){
 $routes->post('/signup', function(){
 	UserController::store();
 });
+$routes->get('/group', function(){
+	GroupController::index();
+});
+$routes->post('/group', function(){
+	GroupController::store();
+});
+$routes->get('/group/new', function(){
+	GroupController::create();
+});
+$routes->get('/group/:id', function($id){
+	GroupController::show($id);
+});

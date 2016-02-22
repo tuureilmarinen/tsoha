@@ -49,8 +49,6 @@ class TaskController extends BaseController{
   public static function update($id){
     parent::check_logged_in();
     $p = $_POST;
-
-
     $task = Task::find($id);
     $task->name=$p['name'];
     $task->description=$p['description'];
