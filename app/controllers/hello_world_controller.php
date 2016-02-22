@@ -4,7 +4,7 @@ require_once 'app/models/group.php';
 
     public static function hello(){
       // make-metodi renderöi app/views-kansiossa sijaitsevia tiedostoja
-   	  View::make('hello.html',array('groups'=>Group::all));
+   	  View::make('hello.html',array('groups'=>Group::all()));
     }
 
     public static function sandbox(){
