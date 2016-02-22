@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-
-{% for Group::all in g %}
+{% for g in groups %}
+{{g.id}}
+{% endfor %}
+{% for g in Group::all %}
 {{g.id}}
 {% endfor %}
 {% endblock %}
