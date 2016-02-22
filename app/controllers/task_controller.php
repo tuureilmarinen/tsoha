@@ -6,7 +6,7 @@ class TaskController extends BaseController{
     parent::check_logged_in();
     $tasks = Task::find_by_user(parent::get_user_logged_in()->id);
     // Renderöidään views/task kansiossa sijaitseva tiedosto index.html muuttujan $tasks datalla
-    View::make('task/index.html', array('tasks' => $tasks));
+    View::make('task/index.html', array('tasks' => $tasks,'title'=>'my tasks'));
   }
   public static function store(){
     // POST-pyynnön muuttujat sijaitsevat $_POST nimisessä assosiaatiolistassa
@@ -28,19 +28,19 @@ class TaskController extends BaseController{
     //Redirect::to('/task/' . $task->id, array('message' => 'Task has been added!'));
       Redirect::to('/task', array('message' => 'Task has been added!'));
     } else {
-      View::make('task/new.html', array('errors' => $errors, 'attributes' => $params));
+      View::make('task/new.html', array('errors' => $errors, 'attributes' => $params,'title'=>'new task'));
     }
   }
   public static function show($id){
     $task = Task::find(intval($id));
-    View::make('task/show.html', array('task' => $task));
+    View::make('task/show.html', array('task' => $task,'title'=>'view task'));
   }
   public static function create(){
-    View::make('task/new.html');
+    View::make('task/new.html',array('title'=>'new task'));
   }
   public static function edit($id){
     $task = Task::find($id);
-    View::make('task/edit.html', array('attributes' => $task));
+    View::make('task/edit.html', array('attributes' => $task,'title'=>'edit '.$task->name));
   }
   public static function update($id){
     $p = $_POST;
@@ -54,7 +54,7 @@ class TaskController extends BaseController{
     $errors = $task->validate();
 
     if(count($errors) > 0){
-      View::make('task/edit.html', array('errors' => $errors, 'attributes' => $p));
+      View::make('task/edit.html', array('errors' => $errors, 'attributes' => $p,'title'=>'edit '.$task->name));
     }else{
       $task->update();
 
