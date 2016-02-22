@@ -50,7 +50,7 @@ class Task extends BaseModel{
 			$groups = array();
 			$query->execute(array('task_id' => $row['id']));
 			while($grow = $query->fetch()){
-				$groups[]=new Group(array($grow));
+				$groups[]=new Group($grow);
 			}
 			$task = new Task(array(
 				'id' => $row['id'],
