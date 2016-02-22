@@ -25,6 +25,6 @@ class GroupController extends BaseController{
 	public static function show($id){
 		parent::check_logged_in();
 		$group = Group::find(intval($id));
-		View::make('group/show.html', array('task' => $task,'title'=>'view group'));
+		View::make('group/show.html', array('group' => $group,'title'=>'view group'));
 	}
 }
