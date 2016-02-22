@@ -61,8 +61,8 @@ class TaskController extends BaseController{
     if(count($errors) > 0){
       View::make('task/edit.html', array('errors' => $errors, 'attributes' => $p,'title'=>'edit '.$task->name,'groups'=>Group::all()));
     }else{
-      $task->update();
-
+      //$task->update();
+      Task::update($id);
       Redirect::to('/task/' . $task->id, array('message' => 'Task has been modified successfully.'));
     }
   }
