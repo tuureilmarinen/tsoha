@@ -12,7 +12,7 @@ class Group extends BaseModel{
 		$query=DB::connection()->prepare("SELECT t.* FROM tasks AS t INNER JOIN ON task_to_groups AS tg ON tg.task_id=t.id INNER JOIN groups AS g ON tg.group_id=g.id WHERE g.id = :group_id");
 		$query->execute(array('group_id' => $this->id));
 		while($row = $query->fetch()){
-			$r[]=new Task($row);	// toimiikohan?		
+			$r[]=new Task($row);	
 		}
 		return $r;
 	}
@@ -21,7 +21,7 @@ class Group extends BaseModel{
 		$query=DB::connection()->prepare("SELECT * FROM groups");
 		$query->execute();
 		while($row = $query->fetch()){
-			$r[]=new Group($row);	// toimiikohan?		
+			$r[]=new Group($row);		
 		}
 		return $r;
 	}

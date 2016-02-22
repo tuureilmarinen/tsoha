@@ -1,30 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>new task</h1>
+<h1>new task</h1>
 
-  <form method="post" action="{{base_path}}/task">
-    <div class="form-group">
-      <label>Name</label>
-      <input name="name" class="form-control" value="{{attributes.name}}" type="text">
-    </div>
+<form method="post" action="{{base_path}}/task">
+  <div class="form-group">
+    <label>Name</label>
+    <input name="name" class="form-control" value="{{attributes.name}}" type="text">
+  </div>
 
-    <div class="form-group">
-      <label>Description</label>
-      <input name="description" class="form-control" value="{{attributes.description}}" type="text">
-    </div>
+  <div class="form-group">
+    <label>Description</label>
+    <input name="description" class="form-control" value="{{attributes.description}}" type="text">
+  </div>
 
-    <div class="form-group">
-      <label>Priority</label>
-      <input name="priority" class="form-control" value="{{attributes.priority}}" type="text">
-    </div>
+  <div class="form-group">
+    <label>Priority</label>
+    <input name="priority" class="form-control" value="{{attributes.priority}}" type="text">
+  </div>
 
-    <div class="form-group">
-      <label>Completed</label>
-      <input type="checkbox" name="completed" value="true">
-    </div>
+  <div class="form-group">
+    <label>Completed</label>
+    <input type="checkbox" name="completed" value="true">
+  </div>
 
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-  </form>
+  <div class="form-group">
+    <label>Groups</label>
+    <select class="form-control" name="categories[]" multiple="">
+      {% for group in groups %}
+      <option value="{{group.id}}">{{group.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
 {% endblock %}

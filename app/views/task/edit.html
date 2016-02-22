@@ -26,10 +26,10 @@
 
 
 	<div class="form-group">
-	<label>Category</label>
+	<label>Groups</label>
 		<select class="form-control" name="categories[]" multiple="">
-			{% for category in categories %}
-			<option value="{{category.id}}">{{category.name}}</option>
+			{% for group in groups %}
+			<option value="{{group.id}}">{{group.name}}</option>
 			{% endfor %}
 		</select>
 	</div>
