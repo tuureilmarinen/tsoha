@@ -15,8 +15,8 @@ class GroupController extends BaseController{
 	}
 	public static function index(){
 		parent::check_logged_in();
-		$tasks = Group::find_by_user(parent::get_user_logged_in()->id);
-		View::make('group/all.html', array('tasks' => $tasks,'title'=>'my groups'));
+		$groups = Group::find_by_user(parent::get_user_logged_in()->id);
+		View::make('group/all.html', array('groups' => $groups,'title'=>'my groups'));
 	}
 	public static function show($id){
 		parent::check_logged_in();
