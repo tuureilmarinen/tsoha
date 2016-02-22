@@ -20,7 +20,7 @@ class Group extends BaseModel{
 		$query=DB::connection()->prepare("SELECT COUNT(*) FROM tasks AS t INNER JOIN task_to_groups AS tg ON t.id=tg.task_id INNER JOIN groups AS g ON tg.group_id=g.id WHERE g.id = :group_id");
 		$query->execute(array('group_id' => $this->id));
 		if($row = $query->fetch()){
-				return $row[0];
+			return $row[0];
 		}
 		return 0;
 	}
@@ -76,5 +76,9 @@ class Group extends BaseModel{
 			return new User($row);
 		}
 		return null;
+	}
+	public static function destroy($id){
+		$query=DB::connection()->prepare('DELETE FROM groups WHERE id= :id');
+		$query->execute(array('id' => $id));
 	}
 }

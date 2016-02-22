@@ -6,11 +6,15 @@ class GroupController extends BaseController{
 	}
 	public static function destroy($id){
 		Group::destroy($id);
+		Redirect::to("group");
 	}
 	public static function store(){
 		$group=Group::store();
 		if(!$group){
-			
+			View::make("group/new.html",array("errors"=>array("something went terribly wrong")));
+		}
+		else {
+			Redirect::to("group");
 		}
 	}
 	public static function index(){
