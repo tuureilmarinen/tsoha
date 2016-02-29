@@ -8,9 +8,9 @@ CREATE TABLE users (
 );
 CREATE TABLE tasks (
 	id SERIAL PRIMARY KEY,
-	name varchar NOT NULL,
+	name varchar UNIQUE NOT NULL,
 	description text,
-	completed boolean,
+	completed boolean DEFAULT false;
 	priority integer NOT NULL,
 	user_id integer REFERENCES users(id) ON DELETE CASCADE,
 	created_at timestamp NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE tasks (
 );
 CREATE TABLE groups (
 	id SERIAL PRIMARY KEY,
-	name varchar NOT NULL,
+	name varchar UNIQUE NOT NULL,
 	user_id integer REFERENCES users(id) ON DELETE CASCADE,
 	created_at timestamp NOT NULL,
 	updated_at timestamp NOT NULL

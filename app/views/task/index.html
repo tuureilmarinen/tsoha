@@ -4,7 +4,11 @@
 {% for task in tasks %}
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<span class="glyphicon glyphicon-remove"></span>
+		{% if task.completed %}
+		<span class="glyphicon glyphicon-ok"> completed</span>
+		{% else %}
+		<span class="glyphicon glyphicon-remove"> unfinished</span>
+		{% endif %}
 		{{task.name}}
 		<span class="badge">
 			{{task.priority}}

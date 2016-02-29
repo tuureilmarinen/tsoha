@@ -10,7 +10,7 @@ class Task extends BaseModel{
 	}
 	public static function all(){
     // Alustetaan kysely tietokantayhteydellämme
-		$query = DB::connection()->prepare('SELECT * FROM tasks');
+		$query = DB::connection()->prepare('SELECT * FROM tasks order by completed asc, priority desc, updated_at desc');
     // Suoritetaan kysely
 		$query->execute();
     // Haetaan kyselyn tuottamat rivit
@@ -70,7 +70,7 @@ class Task extends BaseModel{
 	}
 	public static function find_by_user($user_id){
 		    // Alustetaan kysely tietokantayhteydellämme
-		$query = DB::connection()->prepare('SELECT * FROM tasks WHERE user_id = :user_id');
+		$query = DB::connection()->prepare('SELECT * FROM tasks WHERE user_id = :user_id order by completed asc, priority desc, updated_at desc');
     // Suoritetaan kysely
 		$query->execute(array('user_id' => $user_id));
     // Haetaan kyselyn tuottamat rivit
@@ -101,7 +101,7 @@ class Task extends BaseModel{
 		return $tasks;
 	}
 	public static function find_by_user_and_group($user_id,$group_id){
-		$query = DB::connection()->prepare('SELECT * FROM tasks WHERE user_id = :user_id AND group_id = :group_id');
+		$query = DB::connection()->prepare('SELECT * FROM tasks WHERE user_id = :user_id AND group_id = :group_id order by completed asc, priority desc, updated_at desc');
 		$query->execute(array('user_id' => $user_id,'group_id' => $group_id));
 		$rows = $query->fetchAll();
 		$tasks = array();
