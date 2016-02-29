@@ -5,8 +5,8 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
+			<th>&#35;</th>
 			<th>name</th>
-			<th>id</th>
 			<th>admin</th>
 			<th>actions</th>
 		</tr>
@@ -14,8 +14,8 @@
 	<tbody>
 		{% for u in users %}
 		<tr>
-			<td>{{u.username}}</td>
 			<td>{{u.id}}</td>
+			<td>{{u.username}}</td>
 			<td>{% if u.admin %}<span class="glyphicon glyphicon-ok"></span>{% else %}<span class="glyphicon glyphicon-remove"></span>{% endif %}</td>
 			<td><a class="btn btn-xs btn-default" href="{{base_path}}/user/{{u.id}}"><span class="glyphicon glyphicon-eye-open"></span></a> <form method="post" action="{{base_path}}/user/{{u.id}}/destroy" style="display: inline-block;"><button type="submit" name="id" value="{{task.id}}" class="btn btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
 			</form></td>
