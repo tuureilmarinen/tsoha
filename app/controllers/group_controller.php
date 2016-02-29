@@ -10,13 +10,13 @@ class GroupController extends BaseController{
 			View::make("group/new.html",array("errors"=>array("something went terribly wrong")));
 		}
 		else {
-			Redirect::to("group");
+			Redirect::to("/group");
 		}
 	}
 	public static function index(){
 		parent::check_logged_in();
 		$groups = Group::find_by_user(parent::get_user_logged_in()->id);
-		View::make('group/all.html', array('groups' => $groups,'title'=>'my groups '.parent::get_user_logged_in()->id));
+		View::make('group/all.html', array('groups' => $groups,'title'=>parent::get_user_logged_in()->username.'\'s groups'));
 	}
 	public static function show($id){
 		parent::check_logged_in();

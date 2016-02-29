@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>name</th>
+			<th>id</th>
+			<th>admin</th>
+			<th>actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for u in users %}
+		<tr>
+			<td>{{u.username}}</td>
+			<td>{{u.id}}</td>
+			<td>{{u.admin}}</td>
+			<td><a class="btn btn-xs btn-default" href="{{base_path}}/user/{{u.id}}"><span class="glyphicon glyphicon-eye-open"></span></a> <form method="post" action="{{base_path}}/user/{{u.id}}/destroy" style="display: inline-block;"><button type="submit" name="id" value="{{task.id}}" class="btn btn-xs btn-default "><span class="glyphicon glyphicon-trash"></span></button>
+			</form></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% endblock %}

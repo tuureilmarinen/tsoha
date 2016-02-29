@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+{% if message %}
+<div class="alert alert-success">
+	{{message}}
+</div>
+{% endif %}
+<div class="panel panel-default">
+	<div class="panel-heading h2">
+		<span class="glyphicon glyphicon-remove"></span>
+		{{user.username}}
+		<span class="badge">
+			priority: {{user.id}}
+		</span>
+	</div>
+	<div class="panel-body">
+		<ul>
+			<li><b>Created:</b> {{user.created_at}}</li>
+			<li><b>Edited:</b> {{user.updated_at}}</li>
+			<li><b>Admin:</b> {{user.admin}}</li>
+		</ul>
+		<ul class="list-inline" style="margin-left: 10px;">
+			<li>
+				groups
+			</li>
+			{% for group in user.get_groups() %}
+			<li>
+				<a class="btn btn-xs btn-default" href="{{base_path}}/group/{{group.id}}">{{group.name}}</a>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	
+	<ul class="list-inline" style="margin-left: 10px;">
+		<li>
+			<a class="btn btn-xs btn-primary" href="{{base_path}}/task/{{task.id}}/edit">edit&nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
+		</li>
+		<li>
+			{% if task.completed %}
+			<a class="btn btn-xs btn-success" rel="nofollow" data-method="post" href="{{base_path}}/task/{{task.id}}/markasundone">it&#39;s done&nbsp;<span class="glyphicon glyphicon-ok"></span></a>
+			{% else %}
+			<a class="btn btn-xs btn-success" rel="nofollow" data-method="post" href="{{base_path}}/task/{{task.id}}/markasundone">it&#39;s done&nbsp;<span class="glyphicon glyphicon-ok"></span></a>
+			{% endif %}
+		</li>
+		<li>
+			<a data-confirm="Are you sure?" class="btn btn-xs btn-default" rel="nofollow" data-method="delete" href="{{base_path}}/task/{{task.id}}/delete">delete&nbsp;<span class="glyphicon glyphicon-trash"></span></a>
+		</li>
+	</ul>
+</div>
+{% endblock %}

@@ -1,16 +1,8 @@
 <?php
-
-$routes->get('/hello', function() {
-	HelloWorldController::hello();
-});
-
-$routes->get('/hiekkalaatikko', function() {
-	HelloWorldController::sandbox();
-});
 $routes->get('/', function(){
 	TaskController::index();
 });
-$routes->get('/task', function(){
+$routes->get('/task/', function(){
 	TaskController::index();
 });
 $routes->post('/task', function(){
@@ -51,6 +43,12 @@ $routes->get('/signup', function(){
 });
 $routes->post('/signup', function(){
 	UserController::store();
+});
+$routes->get('/user', function(){
+	UserController::index();
+});
+$routes->get('/user/:id', function(){
+	UserController::show($id);
 });
 $routes->get('/group', function(){
 	GroupController::index();
