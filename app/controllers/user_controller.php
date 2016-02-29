@@ -20,16 +20,16 @@ class UserController extends BaseController{
 		}
 		
 	}
-	public static function index()){
+	public static function index(){
 		if(parent::is_admin())
 			View::make("user/index.html",array('users'=>User::all()));
 		else
-			Redirect::to("/");
-}
-public static function store(){
-	$user=User::store();
-	if(!$user){
-
+			Redirect::to("/");	
 	}
-}
+	public static function store(){
+		$user=User::store();
+		if(!$user){
+			//IMPLEMENT SOMETHING
+		}
+	}
 }
