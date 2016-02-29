@@ -21,9 +21,9 @@
 		</ul>
 		<ul class="list-inline" style="margin-left: 10px;">
 			<li>
-				groups
+				<b>groups</b>
 			</li>
-			{% for group in user.get_groups() %}
+			{% for group in groups %}
 			<li>
 				<a class="btn btn-xs btn-default" href="{{base_path}}/group/{{group.id}}">{{group.name}}</a>
 			</li>
