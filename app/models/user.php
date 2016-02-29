@@ -49,8 +49,9 @@ class User extends BaseModel{
 			return false;
 		}
 		$query=DB::connection()->prepare('SELECT * FROM users WHERE id = :id AND admin = true');
-		$query->execute();
-		if($query->fetch()){
+		$query->execute(array('id'=>$user_id));
+		$row=$query->fetch();
+		if($row){
 			return true;
 		}
 		return false;
