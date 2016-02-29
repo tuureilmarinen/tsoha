@@ -25,5 +25,7 @@ class BaseController{
       return true;
     }
   }
-
+  public static function is_admin($user_id=null){
+    return User::is_admin($user_id);
+  }
 }
