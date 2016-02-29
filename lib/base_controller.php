@@ -34,5 +34,5 @@ class BaseController{
     } else {
       return User::is_admin($user_id);
     }
-
+  }
 }
