@@ -24,7 +24,7 @@ class UserController extends BaseController{
 		if(parent::is_admin())
 			View::make("user/index.html",array('users'=>User::all()));
 		else
-			Redirect::to("/", array('message' => "You are not an admin!"));	
+			Redirect::to("/", array('message' => "You are not an admin! ".parent::get_user_logged_in()->id));	
 	}
 	public static function store(){
 		$user=User::store();
