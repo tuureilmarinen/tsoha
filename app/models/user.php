@@ -44,7 +44,10 @@ class User extends BaseModel{
 		}
 		return null;
 	}
-	public static function is_admin($user_id){
+	public static function is_admin($user_id=null){
+		if($user_id==null){
+			return false;
+		}
 		$query=DB::connection()->prepare('SELECT * FROM users WHERE id = :id AND admin = 1');
 		if($query->fetch()){
 			return true;
@@ -53,10 +56,10 @@ class User extends BaseModel{
 	}
 	public static function all(){
 		$r=array();
-		$query=DB::connection()->prepare("SELECT * FROM tasks");
+		$query=DB::connection()->prepare("SELECT * FROM users");
 		$query->execute();
 		while($row = $query->fetch()){
-			$r[]=new Task($row);		
+			$r[]=new User($row);		
 		}
 		return $r;
 	}
