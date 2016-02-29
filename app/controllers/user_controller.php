@@ -16,7 +16,7 @@ class UserController extends BaseController{
 			$user_to_show=User::find($id);
 			View::make('user/show.html', array('user' => $user_to_show,'title'=>"user: ".$user_to_show->username,'groups'=>Group::find_by_user($id)));
 		} else {
-			Redirect::to("/");
+			Redirect::to("/", array('message' => "You are not an admin or user# ".$id));
 		}
 		
 	}
@@ -24,7 +24,7 @@ class UserController extends BaseController{
 		if(parent::is_admin())
 			View::make("user/index.html",array('users'=>User::all()));
 		else
-			Redirect::to("/");	
+			Redirect::to("/", array('message' => "You are not an admin!"));	
 	}
 	public static function store(){
 		$user=User::store();
