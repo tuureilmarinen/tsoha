@@ -62,6 +62,9 @@ $routes->get('/group/new', function(){
 $routes->get('/group/:id', function($id){
 	GroupController::show($id);
 });
+$routes->post('/group/:id/destroy', function($id){
+	GroupController::destroy($id);
+});
 $routes->get('/group/:id/destroy', function($id){
 	GroupController::destroy($id);
 });
