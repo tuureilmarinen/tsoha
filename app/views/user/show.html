@@ -32,17 +32,10 @@
 	
 	<ul class="list-inline" style="margin-left: 10px;">
 		<li>
-			<a class="btn btn-xs btn-primary" href="{{base_path}}/task/{{task.id}}/edit">edit&nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
+			<a class="btn btn-xs btn-primary" href="{{base_path}}/user/{{user.id}}/edit">edit&nbsp;<span class="glyphicon glyphicon-pencil"></span></a>
 		</li>
 		<li>
-			{% if task.completed %}
-			<a class="btn btn-xs btn-success" rel="nofollow" data-method="post" href="{{base_path}}/task/{{task.id}}/markasundone">it&#39;s done&nbsp;<span class="glyphicon glyphicon-ok"></span></a>
-			{% else %}
-			<a class="btn btn-xs btn-success" rel="nofollow" data-method="post" href="{{base_path}}/task/{{task.id}}/markasundone">it&#39;s done&nbsp;<span class="glyphicon glyphicon-ok"></span></a>
-			{% endif %}
-		</li>
-		<li>
-			<a data-confirm="Are you sure?" class="btn btn-xs btn-default" rel="nofollow" data-method="delete" href="{{base_path}}/task/{{task.id}}/delete">delete&nbsp;<span class="glyphicon glyphicon-trash"></span></a>
+			<a data-confirm="Are you sure?" class="btn btn-xs btn-default" rel="nofollow" data-method="delete" href="{{base_path}}/user/{{user.id}}/destroy">delete&nbsp;<span class="glyphicon glyphicon-trash"></span></a>
 		</li>
 	</ul>
 </div>
