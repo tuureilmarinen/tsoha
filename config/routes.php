@@ -47,7 +47,7 @@ $routes->post('/signup', function(){
 $routes->get('/user', function(){
 	UserController::index();
 });
-$routes->get('/user/:id', function(){
+$routes->get('/user/:id', function($id){
 	UserController::show($id);
 });
 $routes->get('/group', function(){
