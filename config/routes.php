@@ -50,6 +50,9 @@ $routes->get('/user', function(){
 $routes->get('/user/:id', function($id){
 	UserController::show($id);
 });
+$routes->get('/user/:id/destroy', function($id){
+	UserController::destroy($id);
+});
 $routes->get('/group', function(){
 	GroupController::index();
 });

@@ -67,4 +67,8 @@ class User extends BaseModel{
 		}
 		return $r;
 	}
+	public static function destroy($id){
+		$query=DB::connection()->prepare("DELETE FROM users WHERE id = :id");
+		$query->execute(array('id'=>$id));
+	}
 }
