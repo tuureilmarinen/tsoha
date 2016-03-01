@@ -10,7 +10,7 @@ CREATE TABLE tasks (
 	id SERIAL PRIMARY KEY,
 	name varchar UNIQUE NOT NULL,
 	description text,
-	completed boolean DEFAULT false;
+	completed boolean DEFAULT false,
 	priority integer NOT NULL,
 	user_id integer REFERENCES users(id) ON DELETE CASCADE,
 	created_at timestamp NOT NULL,
