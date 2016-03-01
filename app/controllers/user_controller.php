@@ -29,14 +29,15 @@ class UserController extends BaseController{
 	public static function store(){
 		$user=User::store();
 		if(!$user){
-			Redirect::to("/", array('message' => "Failed to store user."));
+			//Redirect::to("/", array('message' => "Failed to store user."));
+			View::make("user/new.html",array($_POST);
 		}
 		Redirect::to("/", array('message' => "Saved user."));
 	}
 	public static function destroy($id){
 		if(parent::is_admin() || parent::get_user_logged_in()->id==$id){
 			User::destroy($id);
-			Redirect::to("/");
+			Redirect::to("/user", array('message' => "User was destroyed."));
 		} else {
 			Redirect::to("/", array('message' => "You are not an admin or user# ".$id));
 		}

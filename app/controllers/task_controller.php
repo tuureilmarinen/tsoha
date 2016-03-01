@@ -39,12 +39,16 @@ class TaskController extends BaseController{
   }
   public static function create(){
     parent::check_logged_in();
-    View::make('task/new.html',array('title'=>'new task','groups'=>Group::all()));
+    $user=parent::get_user_logged_in();
+    $id=$user->id;
+    View::make('task/new.html',array('title'=>'new task','groups'=>Group::find_by_user($id)));
   }
   public static function edit($id){
     parent::check_logged_in();
+    $user=parent::get_user_logged_in();
+    $id=$user->id;
     $task = Task::find($id);
-    View::make('task/edit.html', array('attributes' => $task,'title'=>'edit '.$task->name,'groups'=>Group::all()));
+    View::make('task/edit.html', array('attributes' => $task,'title'=>'edit '.$task->name,'groups'=>Group::find_by_user($id)));
   }
   public static function update($id){
     parent::check_logged_in();
