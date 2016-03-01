@@ -5,9 +5,9 @@ class UserController extends BaseController{
 	public static function create(){
 		View::make("user/new.html");
 	}
-	public static function destroy($id){
+	/*public static function destroy($id){
 		User::destroy($id);
-	}
+	}*/
 	public static function show($id){
 		parent::check_logged_in();
 		$user=parent::get_user_logged_in();
