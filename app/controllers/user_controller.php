@@ -36,7 +36,7 @@ class UserController extends BaseController{
 	public static function destroy($id){
 		if(parent::is_admin() || parent::get_user_logged_in()->id==$id){
 			User::destroy($id);
-			Redirect::to("/")
+			Redirect::to("/");
 		} else {
 			Redirect::to("/", array('message' => "You are not an admin or user# ".$id));
 		}
