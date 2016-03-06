@@ -1,7 +1,7 @@
 <?php
 class Group extends BaseModel{
   // Attribuutit
-	public $id, $name, $user_id, $created_at, $updated_at;
+	public $id, $name, $user_id, $created_at, $updated_at, $validators;
   // Konstruktori
 	public function __construct($attributes){
 		parent::__construct($attributes);
