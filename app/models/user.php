@@ -96,7 +96,7 @@ class User extends BaseModel{
 		if($this->password== '' || $this->password == null){
 			$errors[] = 'Password cannot be empty';
 		}
-		if(strlen($this->name) < 3){
+		if(strlen($this->password) < 3){
 			$errors[] = 'Password cannot be less than 3 characters.';
 		}
 		if($this->password!=$this->password_confrimation){
