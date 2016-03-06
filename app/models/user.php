@@ -35,8 +35,8 @@ class User extends BaseModel{
 	public function store(){
 		$query=DB::connection()->prepare('INSERT INTO users(id,username,password_digest,updated_at,created_at) VALUES(DEFAULT, :username, :password_digest, now(), now()) RETURNING id');
 		$query->execute(array(
-			'username' => $this->['username'],
-			'password_digest' => self::password_hash($this->['password'])));
+			'username' => $this->username,
+			'password_digest' => self::password_hash($this->password)));
 		$row=$query->fetch();
 		if($row){
 			return new User($row);
