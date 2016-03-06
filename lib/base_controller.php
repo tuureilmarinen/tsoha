@@ -26,6 +26,10 @@ class BaseController{
     }
   }
   public static function is_admin($user_id=null){
+    if($user_id==null){
+      $user=self::get_user_logged_in();
+      $user_id=$user->id;
+    }
     return User::is_admin($user_id);
   }
 }
