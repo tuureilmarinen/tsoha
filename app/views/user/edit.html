@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<form method="post" action="{{base_path}}/users/{{user_logged_in.id}}" onsubmit="password_matches_confirmation()">
+<form method="post" action="{{base_path}}/user/{{user_logged_in.id}}" onsubmit="password_matches_confirmation()">
   <div class="form-group">
     <label>Username</label>
     <input name="username" class="form-control" placeholder="username" type="text" value="{{username}}">
@@ -20,7 +20,7 @@
   </div>
 {% endif %}{% endif %}
   <div class="form-group">
-    <button type="submit" class="btn btn-primary">Sign up!</button>
+    <button type="submit" class="btn btn-primary">Update</button>
   </div>
 </form>
 
