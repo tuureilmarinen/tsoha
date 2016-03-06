@@ -5,7 +5,10 @@ class GroupController extends BaseController{
 		View::make("group/new.html");
 	}
 	public static function store(){
-		$group=new Group($_POST);
+		$p=$POST;
+		die("no group");
+		$group=new Group($p);
+		die("got group");
 		if(!$group || count($group->validate())>0){
 			$errors=$group->validate();
 			View::make("group/new.html",array("errors"=>$errors,'name'=>$_POST['name']));
