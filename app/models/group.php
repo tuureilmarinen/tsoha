@@ -63,7 +63,13 @@ class Group extends BaseModel{
 		return User::find($this->user_id);
 	}
 	public function validate_name(){
-		return (strlen($this->name)>3);
+		$errors = array();
+		if($this->name == '' || $this->name == null){
+			$errors[] = 'Name cannot be empty!';
+		}
+		if(strlen($this->name) < 3){
+			$errors[] = 'Name cannot be less than 3 characters.';
+		}
 	}
 	public function store(){
 		$query=DB::connection()->prepare('INSERT INTO groups(id,name,user_id,updated_at,created_at) VALUES(DEFAULT, :name, :user_id, now(), now()) RETURNING id');
