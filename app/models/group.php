@@ -80,4 +80,12 @@ class Group extends BaseModel{
 		$query=DB::connection()->prepare('DELETE FROM groups WHERE id= :id');
 		$query->execute(array('id' => $id));
 	}
+	public function validate(){
+		$errors=array();
+		foreach($this->validators as $validator){
+			$newerrors=$this->{$validator}();
+			$errors=array_merge($errors,$newerrors);
+		}
+		return $errors;
+	}
 }
