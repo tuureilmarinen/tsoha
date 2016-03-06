@@ -8,7 +8,7 @@ class User extends BaseModel{
 		// Konstruktori
 	public function __construct($attributes){
 		parent::__construct($attributes);
-		$this->validators=array('validate_name','validate_description','validate_priority','validate_user');
+		$this->validators=array('validate_username','validate_password');
 	}
 	public static function authenticate($user,$password){
 		$query=DB::connection()->prepare('SELECT users.* from users where username=:username and password_digest=:password_digest;');
