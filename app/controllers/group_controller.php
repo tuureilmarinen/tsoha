@@ -6,7 +6,6 @@ class GroupController extends BaseController{
 	}
 	public static function store(){
 		$p=$_POST;
-		die("no group");
 		$group=new Group($p);
 		die("got group");
 		if(!$group || count($group->validate())>0){
