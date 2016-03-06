@@ -83,7 +83,7 @@ class Group extends BaseModel{
 	public function store(){
 		$query=DB::connection()->prepare('INSERT INTO groups(id,name,user_id,updated_at,created_at) VALUES(DEFAULT, :name, :user_id, now(), now()) RETURNING id');
 		$query->execute(array(
-			'name' => $this->$name,
+			'name' => $this->name,
 			'user_id' => $_SESSION['user']));
 		$row=$query->fetch();
 		if($row){
