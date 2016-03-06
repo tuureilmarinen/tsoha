@@ -32,6 +32,7 @@ class User extends BaseModel{
 		if($row=$query->fetch()){
 			return new User($row);
 		}
+		return null;
 	}
 	public function store(){
 		$query=DB::connection()->prepare('INSERT INTO users(id,username,password_digest,updated_at,created_at) VALUES(DEFAULT, :username, :password_digest, now(), now()) RETURNING id');
@@ -48,14 +49,11 @@ class User extends BaseModel{
 		if($user_id==null){
 			return false;
 		}
-		$query=DB::connection()->prepare('SELECT * FROM users WHERE id = :id AND admin = true');
-		$query->execute(array('id'=>$user_id));
-		$row=$query->fetch();
-		//var_dump($row);
-		if($row){
-			return true;
-		}
-		return false;
+		#$query=DB::connection()->prepare('SELECT * FROM users WHERE id = :id AND admin = true');
+		#$query->execute(array('id'=>$user_id));
+		#$row=$query->fetch();
+		$user=User::find($user_id);
+		return $user->admin;
 		//return true;
 	}
 	public static function all(){
@@ -100,7 +98,7 @@ class User extends BaseModel{
 			$errors[] = 'Password cannot be less than 3 characters.';
 		}
 		if($this->password!=$this->password_confirmation){
-			$errors[] = "password must match confirmation ".$this->password." ".$this->password_confirmation;
+			$errors[] = "password must match confirmation";
 		}
 		return $errors;
 
