@@ -12,10 +12,8 @@
   </title>
 
   {% block head %}
-  <!-- Bootstrap (tyylitiedosto) -->
   <link href="{{base_path}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Oma tyylitiedostomme -->
   <link href="{{base_path}}/assets/css/site.css" rel="stylesheet">
   {% endblock %}
 </head>
@@ -32,11 +30,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <!-- Sovelluksen nimi -->
         <a class="navbar-brand" href="{{base_path}}">la liste de contrôle par iltu</a>
       </div>
 
       <div class="collapse navbar-collapse" id="navigation">
+        {% if user_logged_in %}
         <ul class="nav navbar-nav">
           <li><a href="{{base_path}}/task/new">new task</a></li>
           <li><a href="{{base_path}}/group/new">new group</a></li>
@@ -47,7 +45,6 @@
           {% endif %}
           {% endif %}
         </ul>
-        {% if user_logged_in %}
         <ul class="nav navbar-nav navbar-right">
           <li><a href="{{base_path}}/user/{{user_logged_in.id}}">{{user_logged_in.username}}{% if user_logged_in.admin %} (admin){% endif %}</a></li>
           <li><a href="{{base_path}}/logout">Logout</a></li>
@@ -86,13 +83,8 @@
   </div>
 
   {% block body %}
-  <!-- jQuery -->
   <script src="{{base_path}}/vendor/jquery.min.js"></script>
-
-  <!-- Bootstrap (skriptitiedosto) -->
   <script src="{{base_path}}/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-  <!-- Oma skriptitiedostomme -->
   <script src="{{base_path}}/assets/js/site.js"></script>
   {% endblock %}
 </body>

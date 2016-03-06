@@ -50,6 +50,12 @@ $routes->get('/user', function(){
 $routes->get('/user/:id', function($id){
 	UserController::show($id);
 });
+$routes->post('/user/:id', function($id){
+	UserController::update($id);
+});
+$routes->get('/user/:id/edit', function($id){
+	UserController::edit($id);
+});
 $routes->get('/user/:id/destroy', function($id){
 	UserController::destroy($id);
 });

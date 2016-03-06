@@ -5,12 +5,14 @@ class GroupController extends BaseController{
 		View::make("group/new.html");
 	}
 	public static function store(){
-		$group=Group::store();
-		if(!$group){
-			View::make("group/new.html",array("errors"=>array("something went terribly wrong")));
+		$group=new Group($_POST);
+		$errors=$group->validate();
+		if(!$group || count($errors)>0){
+			View::make("group/new.html",array("errors"=>$errors,'name'=>$_POST['name'])));
 		}
 		else {
-			Redirect::to("/group");
+			$group->store();
+			Redirect::to("/group",array('message'=>"New Group has been saved."));
 		}
 	}
 	public static function index(){

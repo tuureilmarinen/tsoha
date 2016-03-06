@@ -65,15 +65,14 @@ class Group extends BaseModel{
 	public function validate_name(){
 		return (strlen($this->name)>3);
 	}
-	public static function store(){
+	public function store(){
 		$query=DB::connection()->prepare('INSERT INTO groups(id,name,user_id,updated_at,created_at) VALUES(DEFAULT, :name, :user_id, now(), now()) RETURNING id');
-		$p=$_POST;
 		$query->execute(array(
-			'name' => $p['name'],
+			'name' => $this->$name,
 			'user_id' => $_SESSION['user']));
 		$row=$query->fetch();
 		if($row){
-			return new User($row);
+			return new Group($row);
 		}
 		return null;
 	}

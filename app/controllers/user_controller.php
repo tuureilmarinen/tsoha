@@ -27,12 +27,33 @@ class UserController extends BaseController{
 			Redirect::to("/", array('message' => "You are not an admin! ".parent::get_user_logged_in()->id));	
 	}
 	public static function store(){
-		$user=User::store();
-		if(!$user){
+		$user=new User($_POST);
+		@$errors=$user->validate();
+		if(!$user || count($errors)>0){
+			$user->store();
 			//Redirect::to("/", array('message' => "Failed to store user."));
-			View::make("user/new.html",array($_POST);
+			View::make("user/new.html",$_POST);
 		}
 		Redirect::to("/", array('message' => "Saved user."));
+	}
+	public static function update($id){
+		parent::check_logged_in();
+		$c=parent::get_user_logged_in();
+		$user=User::find($id);
+		$user->password=$_POST['password'];
+		$user->password_confirmation=$_POST['password_confirmation'];
+		$user->username=$_POST['username'];
+		if(parent::is_admin()){
+			$user->admin=isset($_POST['admin']);
+		} else {
+			$user->admin=false;
+		}
+		@$errors=$user->validate();
+		if(!$user || count($errors)>0){
+			//Redirect::to("/", array('message' => "Failed to store user."));
+			View::make("user/edit.html",$_POST);
+		}
+		Redirect::to("/", array('message' => "updated user."));
 	}
 	public static function destroy($id){
 		if(parent::is_admin() || parent::get_user_logged_in()->id==$id){
