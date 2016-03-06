@@ -8,6 +8,7 @@ class User extends BaseModel{
 		// Konstruktori
 	public function __construct($attributes){
 		parent::__construct($attributes);
+		$this->validators=array('validate_name','validate_description','validate_priority','validate_user');
 	}
 	public static function authenticate($user,$password){
 		$query=DB::connection()->prepare('SELECT users.* from users where username=:username and password_digest=:password_digest;');
@@ -69,5 +70,39 @@ class User extends BaseModel{
 	public static function destroy($id){
 		$query=DB::connection()->prepare("DELETE FROM users WHERE id = :id");
 		$query->execute(array('id'=>$id));
+	}
+	public function validate(){
+		$errors=array();
+		foreach($this->validators as $validator){
+			$newerrors=$this->{$validator}();
+			$errors=array_merge($errors,$newerrors);
+		}
+		return $errors;
+	}
+
+	public function validate_username(){
+		$errors = array();
+		if($this->username == '' || $this->username == null){
+			$errors[] = 'Name cannot be empty!';
+		}
+		if(strlen($this->username) < 3){
+			$errors[] = 'Name cannot be less than 3 characters.';
+		}
+
+		return $errors;
+	}
+	public function validate_password(){
+		$errors=array();
+		if($this->password== '' || $this->password == null){
+			$errors[] = 'Password cannot be empty';
+		}
+		if(strlen($this->name) < 3){
+			$errors[] = 'Password cannot be less than 3 characters.';
+		}
+		if($this->password!=$this->password_confrimation){
+			$errors[] = 'password must match confirmation';
+		}
+		return $errors;
+
 	}
 }
