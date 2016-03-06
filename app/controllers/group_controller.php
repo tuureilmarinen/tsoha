@@ -7,13 +7,15 @@ class GroupController extends BaseController{
 	public static function store(){
 		$p=$_POST;
 		$group=new Group($p);
-		die("got group");
-		if(!$group || count($group->validate())>0){
+		if(count($group->validate())>0){
+			die("errors");
 			$errors=$group->validate();
 			View::make("group/new.html",array("errors"=>$errors,'name'=>$_POST['name']));
 		}
 		else {
+			die("no errors");
 			$group->store();
+			die("stored");
 			Redirect::to("/group",array('message'=>"New Group has been saved."));
 		}
 	}
