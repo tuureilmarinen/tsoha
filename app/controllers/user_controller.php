@@ -32,7 +32,7 @@ class UserController extends BaseController{
 		if(!$user || count($errors)>0){
 			$user->store();
 			//Redirect::to("/", array('message' => "Failed to store user."));
-			View::make("user/new.html",array('message' => "Failed to store user."));
+			View::make("user/new.html",array('message' => "Failed to store user.",'errors' => $errors));
 		}
 		Redirect::to("/", array('message' => "Saved user."));
 	}
