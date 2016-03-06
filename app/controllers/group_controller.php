@@ -13,9 +13,7 @@ class GroupController extends BaseController{
 			View::make("group/new.html",array("errors"=>$errors,'name'=>$_POST['name']));
 		}
 		else {
-			die("no errors");
 			$group->store();
-			die("stored");
 			Redirect::to("/group",array('message'=>"New Group has been saved."));
 		}
 	}
