@@ -70,6 +70,7 @@ class Group extends BaseModel{
 		if(strlen($this->name) < 3){
 			$errors[] = 'Name cannot be less than 3 characters.';
 		}
+		return $errors;
 	}
 	public function store(){
 		$query=DB::connection()->prepare('INSERT INTO groups(id,name,user_id,updated_at,created_at) VALUES(DEFAULT, :name, :user_id, now(), now()) RETURNING id');
