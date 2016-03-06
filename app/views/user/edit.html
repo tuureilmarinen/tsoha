@@ -13,7 +13,7 @@
     <label>Password confirmation</label>
     <input id="password2" name="password_confirmation" class="form-control" placeholder="password confirmation" type="password">
   </div>
-{% user_logged_in %}{% if user_logged_in.admin %}
+{% if user_logged_in %}{% if user_logged_in.admin %}
   <div class="form-group">
   <label>admin</label>
   <input type="checkbox" class="form-control" name="admin" value="true">
