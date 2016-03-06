@@ -1,11 +1,11 @@
 <?php
 class Group extends BaseModel{
   // Attribuutit
-	public $id, $name, $user_id, $created_at, $updated_at, $validators;
+	public $id, $name, $user_id, $created_at, $updated_at;
   // Konstruktori
 	public function __construct($attributes){
 		parent::__construct($attributes);
-		$this->validators=array("validate_name");
+		$this->validators=array('validate_name');
 	}
 	public function find_tasks(){
 		$r=array();
@@ -92,7 +92,7 @@ class Group extends BaseModel{
 		return null;
 	}
 	public static function destroy($id){
-		$query=DB::connection()->prepare('DELETE FROM groups WHERE id= :id');
+		$query=DB::connection()->prepare('DELETE FROM groups WHERE id = :id');
 		$query->execute(array('id' => $id));
 	}
 }
