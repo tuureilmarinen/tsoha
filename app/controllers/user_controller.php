@@ -20,6 +20,16 @@ class UserController extends BaseController{
 		}
 		
 	}
+	public static function edit($id){
+		parent::check_logged_in();
+		$loggedin=parent::get_user_logged_in();
+		$user=User::find($id);
+		if(parent::is_admin() || $user->id==$loggedin->$id){
+			View::make('user/edit.html', array('attributes' => $user,'title'=>"edit user"));
+		} else {
+			Redirect::to("/", array('message' => "You are not allowed to do that.");
+		}
+	}
 	public static function index(){
 		if(parent::is_admin()){
 			View::make("user/index.html",array('users'=>User::all()));
@@ -55,8 +65,10 @@ class UserController extends BaseController{
 		if(!$user || count($errors)>0){
 			//Redirect::to("/", array('message' => "Failed to store user."));
 			View::make("user/edit.html",$_POST);
+		} else {
+			$user->update();
+			Redirect::to("/", array('message' => "updated user."));
 		}
-		Redirect::to("/", array('message' => "updated user."));
 	}
 	public static function destroy($id){
 		if(parent::is_admin() || parent::get_user_logged_in()->id==$id){

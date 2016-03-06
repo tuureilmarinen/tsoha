@@ -45,6 +45,18 @@ class User extends BaseModel{
 		}
 		return null;
 	}
+		public function update(){
+		$query=DB::connection()->prepare('UPDATE users SET username = :username, password_digest = :password_digest WHERE id = :id RETURNING id');
+		$query->execute(array(
+			'id'=>$this->id,
+			'username' => $this->username,
+			'password_digest' => self::password_hash($this->password)));
+		$row=$query->fetch();
+		if($row){
+			return true;
+		}
+		return false;
+	}
 	public static function is_admin($user_id=null){
 		if($user_id==null){
 			return false;
