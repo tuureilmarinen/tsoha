@@ -28,11 +28,11 @@ class UserController extends BaseController{
 	}
 	public static function store(){
 		$user=new User($_POST);
-		@$errors=$user->validate();
+		$errors=$user->validate();
 		if(!$user || count($errors)>0){
 			$user->store();
 			//Redirect::to("/", array('message' => "Failed to store user."));
-			View::make("user/new.html",$_POST);
+			View::make("user/new.html",array('message' => "Failed to store user."));
 		}
 		Redirect::to("/", array('message' => "Saved user."));
 	}
