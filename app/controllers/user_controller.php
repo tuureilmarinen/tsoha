@@ -30,11 +30,12 @@ class UserController extends BaseController{
 		$user=new User($_POST);
 		$errors=$user->validate();
 		if(!$user || count($errors)>0){
-			$user->store();
 			//Redirect::to("/", array('message' => "Failed to store user."));
 			View::make("user/new.html",array('message' => "Failed to store user.",'errors' => $errors));
+		} else {
+			$user->store();
+			Redirect::to("/", array('message' => "Saved user."));
 		}
-		Redirect::to("/", array('message' => "Saved user."));
 	}
 	public static function update($id){
 		parent::check_logged_in();
