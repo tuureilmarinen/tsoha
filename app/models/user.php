@@ -99,8 +99,8 @@ class User extends BaseModel{
 		if(strlen($this->password) < 3){
 			$errors[] = 'Password cannot be less than 3 characters.';
 		}
-		if($this->password!=$this->password_confrimation){
-			$errors[] = 'password must match confirmation';
+		if($this->password!=$this->password_confirmation){
+			$errors[] = "password must match confirmation ".$this->password." ".$this->password_confirmation;
 		}
 		return $errors;
 
