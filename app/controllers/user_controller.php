@@ -27,7 +27,7 @@ class UserController extends BaseController{
 		if(parent::is_admin() || $user->id==$loggedin->$id){
 			View::make('user/edit.html', array('attributes' => $user,'title'=>"edit user"));
 		} else {
-			Redirect::to("/", array('message' => "You are not allowed to do that.");
+			Redirect::to("/", array('message' => "You are not allowed to do that."));
 		}
 	}
 	public static function index(){
