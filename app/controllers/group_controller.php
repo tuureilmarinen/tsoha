@@ -5,7 +5,7 @@ class GroupController extends BaseController{
 		View::make("group/new.html");
 	}
 	public static function store(){
-		$p=$POST;
+		$p=$_POST;
 		die("no group");
 		$group=new Group($p);
 		die("got group");
