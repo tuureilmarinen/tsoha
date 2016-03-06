@@ -5,7 +5,7 @@ class Group extends BaseModel{
   // Konstruktori
 	public function __construct($attributes){
 		parent::__construct($attributes);
-		$this->validators=array('validate_name');
+		//$this->validators=array('validate_name');
 	}
 	public function find_tasks(){
 		$r=array();
@@ -64,10 +64,10 @@ class Group extends BaseModel{
 	}
 	public function validate(){
 		$errors=array();
-		foreach($this->validators as $validator){
+		/*foreach($this->validators as $validator){
 			$newerrors=$this->{$validator}();
 			$errors=array_merge($errors,$newerrors);
-		}
+		}*/
 		return $errors;
 	}
 	public function validate_name(){

@@ -6,8 +6,8 @@ class GroupController extends BaseController{
 	}
 	public static function store(){
 		$group=new Group($_POST);
-		$errors=$group->validate();
-		if(!$group || count($errors)>0){
+		if(!$group || count($group->validate())>0){
+			$errors=$group->validate();
 			View::make("group/new.html",array("errors"=>$errors,'name'=>$_POST['name']));
 		}
 		else {
