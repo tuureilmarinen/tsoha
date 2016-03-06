@@ -8,7 +8,7 @@ class GroupController extends BaseController{
 		$group=new Group($_POST);
 		$errors=$group->validate();
 		if(!$group || count($errors)>0){
-			View::make("group/new.html",array("errors"=>$errors,'name'=>$_POST['name'])));
+			View::make("group/new.html",array("errors"=>$errors,'name'=>$_POST['name']));
 		}
 		else {
 			$group->store();
